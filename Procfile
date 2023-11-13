@@ -1,1 +1,1 @@
-web: gunicorn veglife.wsgi
+web: gunicorn veg-life.wsgi
