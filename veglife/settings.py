@@ -76,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'veg-life.wsgi.application'
+WSGI_APPLICATION = 'veglife.wsgi.application'
 
 
 # Database
