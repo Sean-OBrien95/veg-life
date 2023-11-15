@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-sean-obrien95-veg-life-wyjt3j0dvl.us2.codeanyapp.com', 'https://veg-life-e7290059d7ac.herokuapp.com/', 'veg-life-e7290059d7ac.herokuapp.com']
+    '8000-sean-obrien95-veg-life-wyjt3j0dvl.us2.codeanyapp.com', 'https://veg-life-e7290059d7ac.herokuapp.com/']
 
 
 # Application definition
@@ -134,7 +134,7 @@ STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 
 
-MEDIA_URL = '/media'
+MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCLoudinaryStorage'
 
 # Default primary key field type
