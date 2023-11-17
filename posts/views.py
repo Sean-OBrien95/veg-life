@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, forms
+from django.contrib.auth.models import User
+
 
 
 def home_view(request):
