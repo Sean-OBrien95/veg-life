@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {% block content %}
+<h2>User Profile</h2>
+<div class="profile-details">
+  <p>Username: {{ user.username }}</p>
+</div>
+
+{% include 'partials/user_card.html' %} {% endblock %}

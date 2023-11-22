@@ -1,0 +1,14 @@
+.user-card {
+    position: relative;
+}
+
+.card-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+}
+
+.user-card:hover .card-options {
+    display: block;
+}
