@@ -1,6 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 <h2>User Profile</h2>
 <div class="profile-details">
+  {% if request.user == user %}
+  <a href="{% url 'edit_profile' %}">Edit Profile</a>
+  {% endif %}
   <p>Username: {{ user.username }}</p>
 </div>
 

@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% block content %}
-
-<h2>Edit Profile</h2>
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Save Changes</button>
-</form>
-
+<h2>User Profile</h2>
+<div class="profile-details">
+  {% if user == user_profile.user %}
+  <a href="{% url 'edit_profile' %}">Edit Profile</a>
+  {% endif %}
+  <p>Username: {{ user.username }}</p>
+</div>
 {% include 'partials/user_card.html' %} {% endblock %}
