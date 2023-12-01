@@ -1,3 +1,4 @@
+{% load static %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,6 +17,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <title>VegLife</title>
   </head>
 
@@ -23,9 +25,9 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-          <a class="navbar-brand" href="{% url 'home' %}">VegLife</a>
+          <a class="navbar-brand" id="logo" href="{% url 'home' %}">VegLife</a>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto" id="nav-bar">
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'home' %}">Home</a>
               </li>
