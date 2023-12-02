@@ -47,3 +47,14 @@ h1 {
     margin: 10px 0;
     width: 100%;
 }
+
+#intro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#welcome {
+    text-align: center;
+    padding: 20px;
+}
