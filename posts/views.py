@@ -2,12 +2,31 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, forms
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm, UserProfileForm, CommentForm
+from .forms import RegistrationForm, UserProfileForm, CommentForm, PostForm
 from .models import UserProfile, Post
 from django.db import models
 from django.views import generic, View
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect
+
+
+@login_required
+def create_post(request):
+    if not request.user.is_superuser:
+        return redirect('')
+
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            new_post.author = request.user
+            new_post.status = 1
+            new_post.save()
+            return redirect('post_detail', slug=new_post.slug)
+    else:
+        form = PostForm()
+
+    return render(request, 'create_post.html', {'form': form})
 
 
 class PostList(generic.ListView):

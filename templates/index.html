@@ -12,6 +12,9 @@
     <p>This is the home page of my Vegan Friendly blog. Enjoy!</p>
   </div>
 </div>
+{% if user.is_superuser %}
+<a href="{% url 'create_post' %}"><button>Create New Post</button></a>
+{% endif %}
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 mt-2 left">
