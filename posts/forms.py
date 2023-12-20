@@ -14,6 +14,10 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title', 'content', 'excerpt', 'featured_image']
 
+
+class LikeCommentForm(forms.Form):
+    comment_id = forms.IntegerField()
+
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField()
 

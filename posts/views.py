@@ -3,11 +3,11 @@ from django.contrib.auth import login, forms
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import RegistrationForm, UserProfileForm, CommentForm, PostForm
-from .models import UserProfile, Post
+from .models import UserProfile, Post, Comment
 from django.db import models
 from django.views import generic, View
 from django.shortcuts import render, get_object_or_404, reverse, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 
 
 @login_required
@@ -61,6 +61,8 @@ class PostDetail(View):
     def post(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
+        liked_comments = list(
+            request.user.comment_likes.all().values_list('id', flat=True))
         comments = post.comments.filter(approved=True).order_by('created_on')
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
@@ -102,6 +104,31 @@ class PostLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+# @login_required
+# def like_comment(request, comment_id):
+#     comment = get_object_or_404(Comment, id=comment_id)
+
+#     # Add or remove the current user from the comment's likes
+#     if comment.likes.filter(id=request.user.id).exists():
+#         comment.likes.remove(request.user)
+#     else:
+#         comment.likes.add(request.user)
+
+#     # Redirect to the post detail page after liking
+#     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+@login_required
+def like_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    if comment.likes.filter(id=request.user.id).exists():
+        comment.likes.remove(request.user)
+    else:
+        comment.likes.add(request.user)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required

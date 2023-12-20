@@ -75,8 +75,21 @@
                         </span> wrote:
                     </p>
                     {{ comment.body | linebreaks }}
+                
+                    <form action="{% url 'like_comment' comment.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-like">
+                            {% if request.user in comment.likes.all %}
+                            <i class="fas fa-heart text-danger"></i>
+                            {% else %}
+                            <i class="far fa-heart"></i>
+                            {% endif %}
+                        </button>
+                        <span class="text-secondary">{{ comment.likes.count }}</span>
+                    </form>
                 </div>
                 {% endfor %}
+
             </div>
         </div>
         <div class="col-md-4 card mb-4  mt-3 ">
