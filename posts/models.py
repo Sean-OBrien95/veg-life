@@ -60,13 +60,8 @@ class Comment(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
-
+    profile_picture = models.ImageField(upload_to='profile_pics', blank=True)
 
 class User(User):
     pass
 
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(blank=True)
-    profile_picture = models.ImageField(upload_to='profile_pics', blank=True)

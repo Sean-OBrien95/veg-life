@@ -2,7 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, forms
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .forms import RegistrationForm, UserProfileForm, CommentForm, PostForm
+from .forms import RegistrationForm, ProfileForm, CommentForm, PostForm
 from .models import UserProfile, Post, Comment
 from django.db import models
 from django.views import generic, View
@@ -121,18 +121,21 @@ def like_comment(request, comment_id):
 
 @login_required
 def edit_profile(request):
-    user_profile, created = UserProfile.objects.get_or_create(
-        user=request.user)
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        user_profile = UserProfile.objects.create(user=request.user)
 
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=user_profile)
+        form = ProfileForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
             form.save()
             return redirect('view_profile')
     else:
-        form = UserProfileForm(instance=user_profile)
+        form = ProfileForm(instance=user_profile)
 
     return render(request, 'profile/edit_profile.html', {'form': form, 'user_profile': user_profile})
+
 
 
 def home_view(request):
