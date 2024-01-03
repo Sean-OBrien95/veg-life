@@ -10,6 +10,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 
 
+
 @login_required
 def create_post(request):
     if not request.user.is_superuser:
@@ -106,19 +107,6 @@ class PostLike(View):
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
-# @login_required
-# def like_comment(request, comment_id):
-#     comment = get_object_or_404(Comment, id=comment_id)
-
-#     # Add or remove the current user from the comment's likes
-#     if comment.likes.filter(id=request.user.id).exists():
-#         comment.likes.remove(request.user)
-#     else:
-#         comment.likes.add(request.user)
-
-#     # Redirect to the post detail page after liking
-#     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
 @login_required
 def like_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
@@ -133,7 +121,9 @@ def like_comment(request, comment_id):
 
 @login_required
 def edit_profile(request):
-    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile, created = UserProfile.objects.get_or_create(
+        user=request.user)
+
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=user_profile)
         if form.is_valid():
@@ -141,6 +131,7 @@ def edit_profile(request):
             return redirect('view_profile')
     else:
         form = UserProfileForm(instance=user_profile)
+
     return render(request, 'profile/edit_profile.html', {'form': form, 'user_profile': user_profile})
 
 
@@ -165,3 +156,5 @@ def register_view(request):
 def view_profile(request):
     user = request.user
     return render(request, 'profile/view_profile.html', {'user': user})
+
+

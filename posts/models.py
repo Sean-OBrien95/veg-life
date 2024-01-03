@@ -4,6 +4,7 @@ from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
 
 
+
 STATUS = ((0, "Draft"), (1, "Published"))
 
 
@@ -63,3 +64,9 @@ class UserProfile(models.Model):
 
 class User(User):
     pass
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pics', blank=True)

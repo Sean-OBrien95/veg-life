@@ -23,9 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('posts.urls'), name='posts_urls'),
     path('accounts/', include('allauth.urls')),
+    path('summernote/', include('django_summernote.urls')),
     path('profile/', views.view_profile, name='view_profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
-    path('summernote/', include('django_summernote.urls')),
 ]
 
-# path('', home_view, name='home'),
