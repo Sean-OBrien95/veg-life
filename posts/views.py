@@ -55,7 +55,8 @@ class PostDetail(View):
                 "comments": comments,
                 "commented": False,
                 "liked": liked,
-                "comment_form": CommentForm()
+                "comment_form": CommentForm(),
+                "author_id": post.author.id
             },
         )
 
@@ -76,6 +77,7 @@ class PostDetail(View):
             comment_form.instance.name = request.user.username
             comment = comment_form.save(commit=False)
             comment.post = post
+            comment.commenter = request.user
             comment.save()
         else:
             comment_form = CommentForm()
@@ -159,5 +161,11 @@ def register_view(request):
 def view_profile(request):
     user = request.user
     return render(request, 'profile/view_profile.html', {'user': user})
+
+
+@login_required
+def view_user_profile(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    return render(request, 'profile/view_user_profile.html', {'user': user})
 
 

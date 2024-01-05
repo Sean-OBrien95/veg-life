@@ -6,7 +6,7 @@
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
                 <h1 class="post-title">{{ post.title }}</h1>
-                <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
+                <p class="post-subtitle"><a href="{% url 'view_user_profile' post.author.id %}">{{ post.author.username }}</a> | {{post.created_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 {% if "placeholder" in post.featured_image.url %}
@@ -69,7 +69,11 @@
                 {% for comment in comments %}
                 <div class="comments" style="padding: 10px;">
                     <p class="font-weight-bold">
-                        {{ comment.name }}
+                        {% if comment.commentor.id %}
+                        <a href="{% url 'view_user_profile' comment.commentor.id %}">{{ comment.commentor.username }}</a>
+                        {% else %}
+                        {{comment.name}}
+                        {% endif %}
                         <span class=" text-muted font-weight-normal">
                             {{ comment.created_on }}
                         </span> wrote:
