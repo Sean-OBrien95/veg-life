@@ -58,6 +58,11 @@
                         <a href="{% url 'edit_post' slug=post.slug %}">Edit Post</a>
                         {% endif %}
                     </div>
+                    <div class="col-1">
+                        {% if user.is_authenticated and user == post.author %}
+                        <a href="{% url 'confirm_delete' slug=post.slug %}">Delete Post</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>

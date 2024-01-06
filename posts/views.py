@@ -185,3 +185,21 @@ def edit_post(request, slug):
         form = PostForm(instance=post)
 
     return render(request, 'edit_post.html', {'form': form, 'post': post})
+
+
+def confirm_delete(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+
+    if request.user == post.author:
+        return render(request, 'confirm_delete.html', {'post': post})
+
+    return redirect('home')
+
+
+def delete_post(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+
+    if request.user == post.author:
+        post.delete()
+
+    return redirect('home')
