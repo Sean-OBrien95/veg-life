@@ -203,3 +203,27 @@ def delete_post(request, slug):
         post.delete()
 
     return redirect('home')
+
+
+@login_required
+def confirm_profile_delete(request):
+    return render(request, 'confirm_profile_delete.html')
+
+
+@login_required
+def delete_profile(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+
+    if request.user == user:
+        try:
+            profile = UserProfile.objects.get(user=user)
+            profile.delete()
+
+        except UserProfile.DoesNotExist:
+            pass
+
+        user.delete()
+
+        return redirect('home')
+    else:
+        return redirect('home')

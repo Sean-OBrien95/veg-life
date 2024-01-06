@@ -14,4 +14,8 @@ urlpatterns = [
     path('post/<slug:slug>/confirm_delete/',
          views.confirm_delete, name='confirm_delete'),
     path('post/<slug:slug>/delete/', views.delete_post, name='delete_post'),
+    path('confirm_profile_delete/', views.confirm_profile_delete,
+         name='confirm_profile_delete'),
+    path('delete_profile/<int:user_id>/',
+         views.delete_profile, name='delete_profile'),
 ]
