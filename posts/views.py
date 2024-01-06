@@ -169,3 +169,19 @@ def view_user_profile(request, user_id):
     return render(request, 'profile/view_user_profile.html', {'user': user})
 
 
+@login_required
+def edit_post(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+
+    if request.user != post.author:
+        return HttpResponseForbidden("You don't have permission to edit this post.")
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            edited_post = form.save()
+            return redirect('post_detail', slug=edited_post.slug)
+    else:
+        form = PostForm(instance=post)
+
+    return render(request, 'edit_post.html', {'form': form, 'post': post})
