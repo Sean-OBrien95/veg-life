@@ -77,7 +77,7 @@ class PostDetail(View):
             comment_form.instance.name = request.user.username
             comment = comment_form.save(commit=False)
             comment.post = post
-            comment.commenter = request.user
+            comment.commentor = request.user
             comment.save()
         else:
             comment_form = CommentForm()
@@ -219,6 +219,13 @@ def delete_profile(request, user_id):
             profile = UserProfile.objects.get(user=user)
             profile.delete()
 
+            user_comments = Comment.objects.filter(commentor=user)
+
+            print(user_comments)
+            user_comments.delete()
+
+            user.blog_likes.clear()
+
         except UserProfile.DoesNotExist:
             pass
 
@@ -226,4 +233,4 @@ def delete_profile(request, user_id):
 
         return redirect('home')
     else:
-        return redirect('home')
+#         return redirect('home')
