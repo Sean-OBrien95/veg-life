@@ -18,4 +18,6 @@ urlpatterns = [
          name='confirm_profile_delete'),
     path('delete_profile/<int:user_id>/',
          views.delete_profile, name='delete_profile'),
+    path('comments/<int:comment_id>/delete/',
+         views.delete_comment, name='delete_comment'),
 ]

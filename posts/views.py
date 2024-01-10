@@ -233,4 +233,17 @@ def delete_profile(request, user_id):
 
         return redirect('home')
     else:
-#         return redirect('home')
+        return redirect('home')
+
+
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if request.user == comment.commentor:
+        post_slug = comment.post.slug
+
+        comment.delete()
+
+        return redirect('post_detail', slug=post_slug)
+    else:
+        return redirect('error_page')

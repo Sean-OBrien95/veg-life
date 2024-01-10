@@ -89,6 +89,12 @@
                         </span> wrote:
                     </p>
                     {{ comment.body | linebreaks }}
+                    {% if request.user == comment.commentor %}
+                    <form action="{% url 'delete_comment' comment.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete Comment</button>
+                    </form>
+                    {% endif %}
                 
                     <form action="{% url 'like_comment' comment.id %}" method="post">
                         {% csrf_token %}
