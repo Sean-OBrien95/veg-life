@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, forms
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import RegistrationForm, ProfileForm, CommentForm, PostForm
 from .models import UserProfile, Post, Comment
 from django.db import models
@@ -247,3 +247,25 @@ def delete_comment(request, comment_id):
         return redirect('post_detail', slug=post_slug)
     else:
         return redirect('error_page')
+
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser, login_url='home')
+def comment_approval(request):
+    pending_comments = Comment.objects.filter(approved=False)
+
+    if request.method == 'POST':
+        comment_id = request.POST.get('comment_id')
+        action = request.POST.get('action')
+
+        comment = get_object_or_404(Comment, pk=comment_id)
+
+        if action == 'approve':
+            comment.approved = True
+            comment.save()
+            return redirect('post_detail', slug=comment.post.slug)
+        elif action == 'decline':
+            comment.delete()
+            return redirect('post_detail', slug=comment.post.slug)
+
+    return render(request, 'comment_approval.html', {'pending_comments': pending_comments})

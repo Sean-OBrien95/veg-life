@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Pending Comments</h2>
+
+{% for comment in pending_comments %}
+<div class="comment">
+    <p>{{ comment.body }}</p>
+    <!-- Form to approve or decline the comment -->
+    <form method="post" action="{% url 'comment_approval' %}">
+        {% csrf_token %}
+        <input type="hidden" name="comment_id" value="{{ comment.id }}">
+        <button type="submit" name="action" value="approve">Approve</button>
+        <button type="submit" name="action" value="decline">Decline</button>
+    </form>
+</div>
+{% endfor %}
+{% endblock content %}

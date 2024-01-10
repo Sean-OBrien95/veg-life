@@ -14,6 +14,7 @@
 </div>
 {% if user.is_superuser %}
 <a href="{% url 'create_post' %}"><button>Create New Post</button></a>
+<a href="{% url 'comment_approval' %}"><button>Approve Comments</button></a>
 {% endif %}
 <div class="container-fluid">
   <div class="row">
