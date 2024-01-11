@@ -109,3 +109,16 @@ h1 {
     background-color: #fff;
     color: #23BBBB;
 }
+
+.btn-bookmark {
+    color: #FFD700;
+    border: none;
+    background: transparent;
+}
+
+.btn-bookmark:hover,
+.btn-bookmark:active {
+    color: #FFD700;
+    background: transparent;
+    border: none;
+}

@@ -1,5 +1,6 @@
 from . import views
 from django.urls import path
+from .views import user_bookmarks
 
 
 urlpatterns = [
@@ -21,4 +22,7 @@ urlpatterns = [
     path('comments/<int:comment_id>/delete/',
          views.delete_comment, name='delete_comment'),
     path('comment_approval/', views.comment_approval, name='comment_approval'),
+    path('toggle_bookmark/<int:post_id>/',
+         views.toggle_bookmark, name='toggle_bookmark'),
+    path('user_bookmarks/', user_bookmarks, name='user_bookmarks'),
 ]

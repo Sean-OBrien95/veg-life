@@ -3,7 +3,7 @@ from django.contrib.auth import login, forms
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import RegistrationForm, ProfileForm, CommentForm, PostForm
-from .models import UserProfile, Post, Comment
+from .models import UserProfile, Post, Comment, Bookmark
 from django.db import models
 from django.views import generic, View
 from django.shortcuts import render, get_object_or_404, reverse, redirect
@@ -47,6 +47,11 @@ class PostDetail(View):
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
 
+        bookmarked = False
+        if request.user.is_authenticated:
+            bookmarked = Bookmark.objects.filter(
+                user=request.user, post=post).exists()
+
         return render(
             request,
             "post_detail.html",
@@ -55,6 +60,7 @@ class PostDetail(View):
                 "comments": comments,
                 "commented": False,
                 "liked": liked,
+                "bookmarked": bookmarked,
                 "comment_form": CommentForm(),
                 "author_id": post.author.id
             },
@@ -269,3 +275,23 @@ def comment_approval(request):
             return redirect('post_detail', slug=comment.post.slug)
 
     return render(request, 'comment_approval.html', {'pending_comments': pending_comments})
+
+
+@login_required
+def toggle_bookmark(request, post_id):
+    user = request.user
+    post = get_object_or_404(Post, id=post_id)
+
+    if Bookmark.objects.filter(user=user, post=post).exists():
+        Bookmark.objects.filter(user=user, post=post).delete()
+    else:
+        Bookmark.objects.create(user=user, post=post)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def user_bookmarks(request):
+    user = request.user
+    bookmarks = Bookmark.objects.filter(user=user)
+    return render(request, 'user_bookmarks.html', {'bookmarks': bookmarks})

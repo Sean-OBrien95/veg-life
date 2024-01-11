@@ -54,6 +54,26 @@
                         {% endwith %}
                     </div>
                     <div class="col-1">
+                        <strong>
+                            {% if user.is_authenticated %}
+                            <form class="d-inline" action="{% url 'toggle_bookmark' post.id %}" method="POST">
+                                {% csrf_token %}
+                                {% if bookmarked %}
+                                <button type="submit" name="blogpost_id" value="{{ post.id }}" class="btn-bookmark">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                                {% else %}
+                                <button type="submit" name="blogpost_id" value="{{ post.id }}" class="btn-bookmark">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                                {% endif %}
+                            </form>
+                            {% else %}
+                            <span class="text-secondary"><i class="far fa-bookmark"></i></span>
+                            {% endif %}
+                        </strong>
+                    </div>
+                    <div class="col-1">
                         {% if user.is_authenticated and user == post.author %}
                         <a href="{% url 'edit_post' slug=post.slug %}">Edit Post</a>
                         {% endif %}

@@ -69,6 +69,8 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-class User(User):
-    pass
 
+class Bookmark(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='bookmarks')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
