@@ -8,6 +8,7 @@ from django.db import models
 from django.views import generic, View
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect, JsonResponse
+from django.db.models import Q
 
 
 
@@ -31,10 +32,21 @@ def create_post(request):
 
 
 class PostList(generic.ListView):
+
     model = Post
-    queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'index.html'
     paginate_by = 6
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            return Post.objects.filter(
+                Q(title__icontains=query) |
+                Q(author__username__icontains=query) |
+                Q(tags__icontains=query)
+            ).distinct()
+        else:
+            return Post.objects.filter(status=1).order_by('-created_on')
 
 
 class PostDetail(View):

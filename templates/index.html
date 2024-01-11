@@ -12,6 +12,10 @@
     <p>This is the home page of my Vegan Friendly blog. Enjoy!</p>
   </div>
 </div>
+<form method="GET" action="{% url 'post_list' %}">
+    <input type="text" name="q" placeholder="Search...">
+    <button type="submit">Search</button>
+</form>
 {% if user.is_superuser %}
 <a href="{% url 'create_post' %}"><button>Create New Post</button></a>
 <a href="{% url 'comment_approval' %}"><button>Approve Comments</button></a>

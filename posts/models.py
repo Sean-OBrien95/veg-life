@@ -20,6 +20,7 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
+    tags = models.CharField(max_length=255, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:

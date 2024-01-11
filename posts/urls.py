@@ -1,6 +1,6 @@
 from . import views
 from django.urls import path
-from .views import user_bookmarks
+from .views import user_bookmarks, PostList
 
 
 urlpatterns = [
@@ -25,4 +25,5 @@ urlpatterns = [
     path('toggle_bookmark/<int:post_id>/',
          views.toggle_bookmark, name='toggle_bookmark'),
     path('user_bookmarks/', user_bookmarks, name='user_bookmarks'),
+    path('posts/', PostList.as_view(), name='post_list'),
 ]
