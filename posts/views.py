@@ -23,6 +23,10 @@ def create_post(request):
             new_post = form.save(commit=False)
             new_post.author = request.user
             new_post.status = 1
+
+            if 'featured_image' in request.FILES:
+                new_post.featured_image = request.FILES['featured_image']
+
             new_post.save()
             return redirect('post_detail', slug=new_post.slug)
     else:
@@ -307,3 +311,4 @@ def user_bookmarks(request):
     user = request.user
     bookmarks = Bookmark.objects.filter(user=user)
     return render(request, 'user_bookmarks.html', {'bookmarks': bookmarks})
+
