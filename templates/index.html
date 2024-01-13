@@ -17,8 +17,22 @@
     <button type="submit">Search</button>
 </form>
 {% if user.is_superuser %}
-<a href="{% url 'create_post' %}"><button>Create New Post</button></a>
-<a href="{% url 'comment_approval' %}"><button>Approve Comments</button></a>
+<div class="row">
+    <div class="col-md-6 text-center">
+        <a href="{% url 'create_post' %}">
+            <button class="btn btn-custom">
+                Create New Post <i class="fa-solid fa-plus"></i>
+            </button>
+        </a>
+    </div>
+    <div class="col-md-6 text-center">
+        <a href="{% url 'comment_approval' %}">
+            <button class="btn btn-custom">
+                Approve Comments <i class="fa-solid fa-check"></i>
+            </button>
+        </a>
+    </div>
+</div>
 {% endif %}
 <div class="container-fluid">
   <div class="row">

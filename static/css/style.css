@@ -122,3 +122,18 @@ h1 {
     background: transparent;
     border: none;
 }
+
+.btn-custom {
+    padding: 10px 50px;
+    background-color: white;
+    color: #595959;
+    border: 2px solid #33cc33;
+    border-radius: 5px;
+    transition-duration: 0.3s;
+}
+
+.btn-custom:hover {
+    background-color: #33cc33;
+    color: white;
+    cursor: pointer;
+}
