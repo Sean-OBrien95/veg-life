@@ -63,6 +63,10 @@ h1 {
     margin-bottom: 10px;
 }
 
+.card-img-top {
+    height: 100%;
+}
+
 .author {
     color: white;
     margin: 4px;
