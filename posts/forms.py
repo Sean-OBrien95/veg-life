@@ -37,6 +37,8 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
 
     VEGAN_DURATION_CHOICES = [
+        ('0-6 months', '0-6 months'),
+        ('6-12 months', '6-12 months'),
         ('1-2 years', '1-2 years'),
         ('2-3 years', '2-3 years'),
         ('3-5 years', '3-5 years'),
