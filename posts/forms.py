@@ -44,7 +44,18 @@ class UserForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+
+    VEGAN_DURATION_CHOICES = [
+        ('1-2 years', '1-2 years'),
+        ('2-3 years', '2-3 years'),
+        ('3-5 years', '3-5 years'),
+        ('5+ years', '5+ years'),
+    ]
+
+    vegan_duration = forms.ChoiceField(choices=VEGAN_DURATION_CHOICES, required=False)
+
     class Meta:
         model = UserProfile
-        fields = ['bio', 'profile_picture']
+        fields = ['bio', 'profile_picture',
+                  'vegan_duration', 'favorite_animal', 'interests']
 
