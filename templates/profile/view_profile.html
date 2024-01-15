@@ -9,7 +9,9 @@
                     <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture">
                 </div>
                 {% else %}
-                <p>No profile picture uploaded</p>
+                <div class="profile-picture">
+                    <img src="../static/images/no-pic.png" alt="Profile Picture">
+                </div>
                 {% endif %}
                 <p id="username">{{ user.username }}</p>
             </div>

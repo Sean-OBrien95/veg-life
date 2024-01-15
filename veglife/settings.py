@@ -73,10 +73,6 @@ CRISPY_TEMPLATE_PACKAGE = 'bootstrap4'
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-ACCOUNT_FORMS = {
-    'signup': 'posts.forms.CustomSignupForm',
-}
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
