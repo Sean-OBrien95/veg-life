@@ -93,7 +93,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
+        <div class="col-md-8 card mb-4 mt-3 ">
             <h3>Comments:</h3>
             <div class="card-body">
                 {% for comment in comments %}
@@ -109,30 +109,31 @@
                         </span> wrote:
                     </p>
                     {{ comment.body | linebreaks }}
-                    {% if request.user == comment.commentor %}
-                    <form action="{% url 'delete_comment' comment.id %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Delete Comment</button>
-                    </form>
-                    {% endif %}
-                
-                    <form action="{% url 'like_comment' comment.id %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn-like">
-                            {% if request.user in comment.likes.all %}
-                            <i class="fas fa-heart text-danger"></i>
-                            {% else %}
-                            <i class="far fa-heart"></i>
-                            {% endif %}
-                        </button>
-                        <span class="text-secondary">{{ comment.likes.count }}</span>
-                    </form>
+                    <div class="button-container">
+                        <form action="{% url 'like_comment' comment.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-like">
+                                {% if request.user in comment.likes.all %}
+                                <i class="fas fa-heart text-danger"></i>
+                                {% else %}
+                                <i class="far fa-heart"></i>
+                                {% endif %}
+                            </button>
+                            <span class="text-secondary">{{ comment.likes.count }}</span>
+                        </form>
+                     
+                        <form action="{% url 'delete_comment' comment.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="comment-delete">x</button>
+                        </form>
+                    </div>
+    
                 </div>
                 {% endfor %}
 
             </div>
         </div>
-        <div class="col-md-4 card mb-4  mt-3 ">
+        <div class="col-md-4 card mb-4 mt-3 ">
             <div class="card-body">
                 {% if commented %}
                 <div class="alert alert-success" role="alert">

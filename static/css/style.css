@@ -207,3 +207,21 @@ h1 {
 .profile-btn {
     width: auto;
 }
+
+.comment-delete {
+    background-color: white;
+    color: #595959;
+    border: none;
+    transition-duration: 0.3s;
+    margin-left: 25px;
+}
+
+.comment-delete:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+}
