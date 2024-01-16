@@ -2,6 +2,8 @@ from .models import UserProfile, Comment, Post
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django_summernote.widgets import SummernoteWidget
+from django.core.validators import MaxLengthValidator
 
 
 class CommentForm(forms.ModelForm):
@@ -14,6 +16,15 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content', 'excerpt', 'featured_image']
+
+        widgets = {
+            'content': SummernoteWidget(),
+    }
+
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.fields['title'].validators.append(MaxLengthValidator(
+            limit_value=25, message='Title must be 25 characters or fewer.'))
 
 
 class LikeCommentForm(forms.Form):
