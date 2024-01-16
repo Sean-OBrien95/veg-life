@@ -4,11 +4,11 @@
 <div class="masthead">
     <div class="container">
         <div class="row g-0">
-            <div class="col-md-6 masthead-text">
+            <div class="col-md-8 masthead-text">
                 <h1 class="post-title">{{ post.title }}</h1>
                 <p class="post-subtitle"><a href="{% url 'view_user_profile' post.author.id %}">{{ post.author.username }}</a> | {{post.created_on }}</p>
             </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
+            <div class="d-none d-md-block col-md-4 masthead-image">
                 {% if "placeholder" in post.featured_image.url %}
                 <img src="../static/images/veg-default.jpg" width="100%">
                 {% else %}
@@ -75,12 +75,12 @@
                     </div>
                     <div class="col-1">
                         {% if user.is_authenticated and user == post.author %}
-                        <a href="{% url 'edit_post' slug=post.slug %}">Edit Post</a>
+                        <a href="{% url 'edit_post' slug=post.slug %}">Edit</a>
                         {% endif %}
                     </div>
                     <div class="col-1">
                         {% if user.is_authenticated and user == post.author %}
-                        <a href="{% url 'confirm_delete' slug=post.slug %}">Delete Post</a>
+                        <a href="{% url 'confirm_delete' slug=post.slug %}">Delete</a>
                         {% endif %}
                     </div>
                 </div>
