@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags %} {% load static %}
 
 <div class="masthead">
     <div class="container">
@@ -10,10 +10,11 @@
             </div>
             <div class="d-none d-md-block col-md-4 masthead-image">
                 {% if "placeholder" in post.featured_image.url %}
-                <img src="../static/images/veg-default.jpg" width="100%">
+                <img src="{% static 'images/veg-default.jpg' %}" width="100%">
                 {% else %}
-                <img src=" {{ post.featured_image.url }}" width="100%">
+                <img src="{{ post.featured_image.url }}" width="100%">
                 {% endif %}
+
             </div>
         </div>
     </div>
