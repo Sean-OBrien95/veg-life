@@ -225,3 +225,18 @@ h1 {
     display: flex;
     align-items: center;
 }
+
+.social-links {
+    text-align: center;
+}
+
+.social-links li {
+    display: inline;
+}
+
+.social-links i {
+    font-size: 200%;
+    margin: 3%;
+    padding: 5%;
+    color: #999999
+}
