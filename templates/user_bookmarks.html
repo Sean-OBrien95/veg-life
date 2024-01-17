@@ -1,19 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Your Bookmarks</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <h2>Your Bookmarks</h2>
 
-{% if user.bookmarks.all %}
-<ul>
-    {% for bookmark in user.bookmarks.all %}
-    <li>
-        <a href="{% url 'post_detail' slug=bookmark.post.slug %}">
-            {{ bookmark.post.title }}
-        </a>
-    </li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No bookmarks yet.</p>
+            {% if user.bookmarks.all %}
+            <ul>
+                {% for bookmark in user.bookmarks.all %}
+                <li>
+                    <a href="{% url 'post_detail' slug=bookmark.post.slug %}">
+                        {{ bookmark.post.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No bookmarks yet.</p>
+        </div>
+    </div>
+</div>
 {% endif %}
 {% endblock %}

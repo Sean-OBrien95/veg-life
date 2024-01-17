@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Are you sure you want to delete "{{ post.title }}"?</h2>
-<form action="{% url 'delete_post' slug=post.slug %}" method="post">
-    {% csrf_token %}
-    <button type="submit">Yes</button>
-    <a href="{% url 'home' %}"><button type="button">No</button></a>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-3 offset-md-2">
+            <h2>Are you sure you want to delete "{{ post.title }}"?</h2>
+            <form action="{% url 'delete_post' slug=post.slug %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Yes</button>
+                <a href="{% url 'home' %}"><button type="button">No</button></a>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock content %}
