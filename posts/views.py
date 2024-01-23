@@ -180,16 +180,13 @@ def register_view(request):
 
 
 @login_required
-def view_profile(request):
-    user = request.user
+def view_profile(request, user_id=None):
+    if user_id:
+        user = get_object_or_404(User, pk=user_id)
+    else:
+        user = request.user
+
     return render(request, 'profile/view_profile.html', {'user': user})
-
-
-@login_required
-def view_user_profile(request, user_id):
-    user = get_object_or_404(User, pk=user_id)
-    return render(request, 'profile/view_user_profile.html', {'user': user})
-
 
 @login_required
 def edit_post(request, slug):

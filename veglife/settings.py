@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-sean-obrien95-veg-life-wyjt3j0dvl.us2.codeanyapp.com', 'https://veg-life-e7290059d7ac.herokuapp.com/']
+    '8000-sean-obrien95-veg-life-wyjt3j0dvl.us2.codeanyapp.com', 'https://veg-life-e7290059d7ac.herokuapp.com/', '8000-seanobrien95-veglife-3r5ds5ppvii.ws-eu107.gitpod.io']
 
 
 # Application definition

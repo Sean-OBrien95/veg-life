@@ -21,6 +21,7 @@
             <p>Favourite Animal: {{ user.userprofile.favorite_animal }}</p>
             <p>Interests: {{ user.userprofile.interests }}</p>
             <br>
+            {% if user == request.user %}
             <div class="row">
                 <div class="col-md-3 text-center">
                     <a href="{% url 'edit_profile' %}">
@@ -38,6 +39,7 @@
                     </a>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
