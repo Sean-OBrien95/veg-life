@@ -9,6 +9,7 @@ from django.views import generic, View
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Q
+from django.contrib import messages
 
 
 
@@ -28,6 +29,9 @@ def create_post(request):
                 new_post.featured_image = request.FILES['featured_image']
 
             new_post.save()
+
+            messages.success(request, 'Post created successfully!')
+
             return redirect('post_detail', slug=new_post.slug)
     else:
         form = PostForm()
@@ -154,6 +158,7 @@ def edit_profile(request):
         form = ProfileForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Profile updated successfully!')
             return redirect('view_profile')
     else:
         form = ProfileForm(instance=user_profile)
@@ -199,6 +204,7 @@ def edit_post(request, slug):
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             edited_post = form.save()
+            messages.success(request, 'Post updated successfully!')
             return redirect('post_detail', slug=edited_post.slug)
     else:
         form = PostForm(instance=post)
@@ -220,6 +226,7 @@ def delete_post(request, slug):
 
     if request.user == post.author:
         post.delete()
+        messages.error(request, 'Post has been deleted', extra_tags='toast-red')
 
     return redirect('home')
 
@@ -249,6 +256,8 @@ def delete_profile(request, user_id):
             pass
 
         user.delete()
+
+        messages.error(request, 'Profile has been deleted')
 
         return redirect('home')
     else:

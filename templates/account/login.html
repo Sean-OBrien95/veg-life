@@ -27,13 +27,13 @@
                             {% element fields form=form unlabeled=True %}
                         {% endelement %}
                     {% endslot %}
-                    <!-- {% if redirect_field_value %}
+                    {% if redirect_field_value %}
                         <input
                             type="hidden"
                             name="{{ redirect_field_name }}"
                             value="{{ redirect_field_value }}"
                         />
-                    {% endif %} -->
+                    {% endif %}
                     {% slot actions %}
                         {% element button type="submit" tags="prominent,login" %}
                             {% trans "Sign In" %}
