@@ -26,3 +26,4 @@ urlpatterns = [
     path('user_bookmarks/', user_bookmarks, name='user_bookmarks'),
     path('posts/', PostList.as_view(), name='post_list'),
 ]
+

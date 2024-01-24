@@ -317,4 +317,3 @@ def user_bookmarks(request):
     user = request.user
     bookmarks = Bookmark.objects.filter(user=user)
     return render(request, 'user_bookmarks.html', {'bookmarks': bookmarks})
-
