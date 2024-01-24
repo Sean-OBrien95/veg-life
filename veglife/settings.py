@@ -69,6 +69,10 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
+ACCOUNT_FORMS = {
+    'login': 'posts.forms.MyCustomLoginForm',    
+}
+
 CRISPY_TEMPLATE_PACKAGE = 'bootstrap4'
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'

@@ -6,8 +6,8 @@
             <h2>Are you sure you want to delete "{{ post.title }}"?</h2>
             <form action="{% url 'delete_post' slug=post.slug %}" method="post">
                 {% csrf_token %}
-                <button type="submit">Yes</button>
-                <a href="{% url 'home' %}"><button type="button">No</button></a>
+                <button type="submit" class="btn btn-custom">Yes</button>
+                <a href="{% url 'home' %}"><button type="button" class="btn btn-custom">No</button></a>
             </form>
         </div>
     </div>

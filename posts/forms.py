@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django_summernote.widgets import SummernoteWidget
 from django.core.validators import MaxLengthValidator
+from allauth.account.forms import LoginForm
 
 
 class CommentForm(forms.ModelForm):
@@ -63,3 +64,8 @@ class ProfileForm(forms.ModelForm):
         fields = ['bio', 'profile_picture',
                   'vegan_duration', 'favorite_animal', 'interests']
 
+
+class MyCustomLoginForm(LoginForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args,**kwargs)
+        self.fields["password"].help_text = None

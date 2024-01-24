@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 from posts.views import home_view
 from posts import views
+from allauth.account.views import PasswordResetView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +27,6 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('profile/', views.view_profile, name='view_profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
+    path('accounts/password/reset/', PasswordResetView.as_view(), name='account_reset_password'),
 ]
 
