@@ -47,15 +47,15 @@
         <div class="col-md-6">
           <div class="card mb-6">
             <div class="card-body">
-              <div class="image-container">
+              <div class="post-container">
                 {% if "placeholder" in post.featured_image.url %}
                 <img
-                  class="card-img-top"
+                  class="card-img-top img-fluid"
                   src="{% static 'images/veg-default.jpg' %}"
                   style="overflow: hidden;"
                 />
                 {% else %}
-                <img class="card-img-top" src="{{ post.featured_image.url }}" style="overflow: hidden;"/>
+                <img class="card-img-top img-fluid" src="{{ post.featured_image.url }}" style="overflow: hidden;"/>
                 {% endif %}
                 <div class="image-flash">
                   <p class="author">Author: {{ post.author }}</p>
