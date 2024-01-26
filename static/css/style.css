@@ -172,12 +172,31 @@ h1 {
     cursor: pointer;
 }
 
+#magnify {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
 .search-bar {
-    width: 500px;
+    width: 80vw;
+    max-width: 400px;
+}
+
+@media (max-width: 600px) {
+    .search-bar {
+        width: 60vw;
+        max-width: 300px;
+    }
 }
 
 #search-area {
     margin-bottom: 10px;
+    width: 100%;
+}
+
+#search-area form {
+    display: flex;
+    justify-content: center;
 }
 
 .profile-picture {
