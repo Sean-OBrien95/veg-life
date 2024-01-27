@@ -8,7 +8,7 @@
                 <h1 class="post-title">{{ post.title }}</h1>
                 <p class="post-subtitle"><a href="{% url 'view_profile' post.author.id %}">{{ post.author.username }}</a> | {{post.created_on }}</p>
             </div>
-            <div class="d-none d-md-block col-md-4 masthead-image">
+            <div class="col-md-4 masthead-image d-none d-md-block">
                 {% if "placeholder" in post.featured_image.url %}
                 <img src="{% static 'images/veg-default.jpg' %}" width="100%">
                 {% else %}
@@ -22,8 +22,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
-            <div class="card-body">
+        <div class="col mb-4 mt-3 left top">
+            <div>
 
                 {% if post_created %}
                         <script>
@@ -41,8 +41,7 @@
                     {{ post.content | safe }}
                 </p>
                 <div class="row">
-
-                    <div class="col-1">
+                    <div class="col-2">
                         <strong>
                             {% if user.is_authenticated %}
                             <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
@@ -61,13 +60,13 @@
                             <span class="text-secondary">{{ post.number_of_likes }} </span>
                         </strong>
                     </div>
-                    <div class="col-1">
+                    <div class="col-2">
                         {% with comments.count as total_comments %}
                         <strong class="text-secondary"><i class="far fa-comments"></i>
                             {{ total_comments }}</strong>
                         {% endwith %}
                     </div>
-                    <div class="col-1">
+                    <div class="col-2">
                         <strong>
                             {% if user.is_authenticated %}
                             <form class="d-inline" action="{% url 'toggle_bookmark' post.id %}" method="POST">
@@ -87,12 +86,12 @@
                             {% endif %}
                         </strong>
                     </div>
-                    <div class="col-1">
+                    <div class="col-2">
                         {% if user.is_authenticated and user == post.author %}
                         <a href="{% url 'edit_post' slug=post.slug %}">Edit</a>
                         {% endif %}
                     </div>
-                    <div class="col-1">
+                    <div class="col-2">
                         {% if user.is_authenticated and user == post.author %}
                         <a href="{% url 'confirm_delete' slug=post.slug %}">Delete</a>
                         {% endif %}
@@ -101,6 +100,7 @@
             </div>
         </div>
     </div>
+    
     <div class="row">
         <div class="col">
             <hr>
@@ -148,7 +148,7 @@
 
             </div>
         </div>
-        <div class="col-md-4 card mb-4 mt-3 ">
+        <div class="col-md-4 card mb-4 mt-3">
             <div class="card-body">
                 {% if commented %}
                 <div class="alert alert-success" role="alert">
