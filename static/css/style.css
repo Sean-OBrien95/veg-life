@@ -281,7 +281,8 @@ h1 {
 }
 
 .profile-btn {
-    width: auto;
+    width: 150px;
+
 }
 
 .comment-delete {
@@ -318,5 +319,13 @@ h1 {
 }
 
 #id_body {
+    max-width: 100%;
+}
+
+.summernote-div {
+    max-width: 100%;
+}
+
+.panel-heading {
     max-width: 100%;
 }
