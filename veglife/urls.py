@@ -27,6 +27,6 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('profile/', views.view_profile, name='view_profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
-    path('accounts/password/reset/', PasswordResetView.as_view(), name='account_reset_password'),
+    path('accounts/password/reset/', PasswordResetView.as_view(),
+         name='account_reset_password'),
 ]
-

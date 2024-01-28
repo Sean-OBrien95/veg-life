@@ -7,6 +7,7 @@ from django.utils.text import slugify
 # Defining choices of published or drafted
 STATUS = ((0, "Draft"), (1, "Published"))
 
+
 # Model for creating and keeping record of blog posts
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
@@ -27,17 +28,15 @@ class Post(models.Model):
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
-
     class Meta:
         ordering = ['-created_on']
-
 
     def __str__(self):
         return self.title
 
-
     def number_of_likes(self):
         return self.likes.count()
+
 
 # Model for comments on blog posts
 class Comment(models.Model):
@@ -60,6 +59,7 @@ class Comment(models.Model):
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
 
+
 # Custom user profile model, used to store information on profiles
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -69,9 +69,9 @@ class UserProfile(models.Model):
     favorite_animal = models.CharField(max_length=100, blank=True)
     interests = models.TextField(blank=True)
 
-
     def __str__(self):
         return self.user.username
+
 
 # Model for tracking bookmarked posts
 class Bookmark(models.Model):

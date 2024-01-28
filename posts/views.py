@@ -53,14 +53,16 @@ class PostList(generic.ListView):
         # Get the value of 'q' from the request's GET parameters
         query = self.request.GET.get('q')
         if query:
-            # If a search query is provided, filter posts based on title, author's username, or tags
+            # If a search query is provided, filter posts based on title,
+            # author's username, or tags
             return Post.objects.filter(
                 Q(title__icontains=query) |
                 Q(author__username__icontains=query) |
                 Q(tags__icontains=query)
             ).distinct()
         else:
-             # If no search query is provided, filter published posts by status and order by creation date
+            # If no search query is provided, filter published posts
+            # by status and order by creation date
             return Post.objects.filter(status=1).order_by('-created_on')
 
 
@@ -109,12 +111,12 @@ class PostDetail(View):
             request.user.comment_likes.all().values_list('id', flat=True))
         comments = post.comments.filter(approved=True).order_by('created_on')
 
-         # Check if the current user has liked the post
+        # Check if the current user has liked the post
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
 
-         # Create a CommentForm instance with POST data
+        # Create a CommentForm instance with POST data
         comment_form = CommentForm(data=request.POST)
 
         if comment_form.is_valid():
@@ -182,15 +184,18 @@ def edit_profile(request):
         # If the form is submitted with POST data
         form = ProfileForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
-            # If the form is valid, save the form data to update the user profile
+            # If the form is valid, save the form data to
+            # update the user profile
             form.save()
             messages.success(request, 'Profile updated successfully!')
             return redirect('view_profile')
     else:
-        # If the form is not submitted (GET request), initialize the form with the user's profile data
+        # If the form is not submitted (GET request),
+        # initialize the form with the user's profile data
         form = ProfileForm(instance=user_profile)
 
-    return render(request, 'profile/edit_profile.html', {'form': form, 'user_profile': user_profile})
+    return render(request, 'profile/edit_profile.html',
+                  {'form': form, 'user_profile': user_profile})
 
 
 # View to handle user registration
@@ -226,7 +231,8 @@ def edit_post(request, slug):
 
     # Check if the current user has permission to edit the post
     if request.user != post.author:
-        return HttpResponseForbidden("You don't have permission to edit this post.")
+        return HttpResponseForbidden(
+            "You don't have permission to edit this post.")
 
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
@@ -257,7 +263,8 @@ def delete_post(request, slug):
 
     if request.user == post.author:
         post.delete()
-        messages.error(request, 'Post has been deleted', extra_tags='toast-red')
+        messages.error(request,
+                       'Post has been deleted', extra_tags='toast-red')
 
     return redirect('home')
 
@@ -274,7 +281,8 @@ def delete_profile(request, user_id):
 
     user = get_object_or_404(User, pk=user_id)
 
-    # Check if the logged-in user matches the user whose profile is being deleted
+    # Check if the logged-in user matches the user whose
+    # profile is being deleted
     if request.user == user:
         try:
             profile = UserProfile.objects.get(user=user)
@@ -297,7 +305,6 @@ def delete_profile(request, user_id):
         return redirect('home')
     else:
         return redirect('home')
-
 
 
 # View to delete a comment
@@ -341,7 +348,8 @@ def comment_approval(request):
 
             return redirect('post_detail', slug=comment.post.slug)
 
-    return render(request, 'comment_approval.html', {'pending_comments': pending_comments})
+    return render(request, 'comment_approval.html',
+                  {'pending_comments': pending_comments})
 
 
 # View to toggle bookmark for a post
@@ -358,7 +366,6 @@ def toggle_bookmark(request, post_id):
         Bookmark.objects.create(user=user, post=post)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
 
 
 # View to display user bookmarks

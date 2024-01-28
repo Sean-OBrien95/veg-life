@@ -10,7 +10,8 @@ urlpatterns = [
     path('profile/<int:user_id>/', view_profile, name='view_profile'),
     path('post/<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
     path('post/<slug:slug>/like/', views.PostLike.as_view(), name='post_like'),
-    path('comment/<int:comment_id>/like/', views.like_comment, name='like_comment'),
+    path('comment/<int:comment_id>/like/',
+         views.like_comment, name='like_comment'),
     path('post/<slug:slug>/edit/', views.edit_post, name='edit_post'),
     path('post/<slug:slug>/confirm_delete/',
          views.confirm_delete, name='confirm_delete'),
@@ -27,4 +28,3 @@ urlpatterns = [
     path('user_bookmarks/', user_bookmarks, name='user_bookmarks'),
     path('posts/', PostList.as_view(), name='post_list'),
 ]
-
