@@ -41,7 +41,7 @@
                     {{ post.content | safe }}
                 </p>
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-md-2">
                         <strong>
                             {% if user.is_authenticated %}
                             <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
@@ -60,13 +60,13 @@
                             <span class="text-secondary">{{ post.number_of_likes }} </span>
                         </strong>
                     </div>
-                    <div class="col-2">
+                    <div class="col-md-2">
                         {% with comments.count as total_comments %}
                         <strong class="text-secondary"><i class="far fa-comments"></i>
                             {{ total_comments }}</strong>
                         {% endwith %}
                     </div>
-                    <div class="col-2">
+                    <div class="col-md-2">
                         <strong>
                             {% if user.is_authenticated %}
                             <form class="d-inline" action="{% url 'toggle_bookmark' post.id %}" method="POST">
@@ -86,12 +86,12 @@
                             {% endif %}
                         </strong>
                     </div>
-                    <div class="col-2">
+                    <div class="col-md-2">
                         {% if user.is_authenticated and user == post.author %}
                         <a href="{% url 'edit_post' slug=post.slug %}">Edit</a>
                         {% endif %}
                     </div>
-                    <div class="col-2">
+                    <div class="col-md-2">
                         {% if user.is_authenticated and user == post.author %}
                         <a href="{% url 'confirm_delete' slug=post.slug %}">Delete</a>
                         {% endif %}
