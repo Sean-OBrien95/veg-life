@@ -1,174 +1,184 @@
-{% extends 'base.html' %} {% block content %}
-{% load crispy_forms_tags %} {% load static %}
+{% extends 'base.html' %}
 
-<div class="masthead">
+{% block content %}
+  {% load crispy_forms_tags %} {% load static %}
+
+  <!-- Masthead section with post title, author, and creation date -->
+  <div class="masthead">
     <div class="container">
-        <div class="row g-0">
-            <div class="col-md-8 masthead-text">
-                <h1 class="post-title">{{ post.title }}</h1>
-                <p class="post-subtitle"><a href="{% url 'view_profile' post.author.id %}">{{ post.author.username }}</a> | {{post.created_on }}</p>
-            </div>
-            <div class="col-md-4 masthead-image d-none d-md-block">
-                {% if "placeholder" in post.featured_image.url %}
-                <img src="{% static 'images/veg-default.jpg' %}" width="100%">
-                {% else %}
-                <img src="{{ post.featured_image.url }}" width="100%">
-                {% endif %}
-
-            </div>
+      <div class="row g-0">
+        <div class="col-md-8 masthead-text">
+          <h1 class="post-title">{{ post.title }}</h1>
+          <p class="post-subtitle"><a href="{% url 'view_profile' post.author.id %}">{{ post.author.username }}</a> | {{ post.created_on }}</p>
         </div>
+        <div class="col-md-4 masthead-image d-none d-md-block">
+          <!-- Featured image with fallback to a default image -->
+          {% if "placeholder" in post.featured_image.url %}
+            <img src="{% static 'images/veg-default.jpg' %}" width="100%">
+          {% else %}
+            <img src="{{ post.featured_image.url }}" width="100%">
+          {% endif %}
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="container">
+  <div class="container">
     <div class="row">
-        <div class="col mb-4 mt-3 left top">
-            <div>
+      <div class="col mb-4 mt-3 left top">
+        <div>
 
-                {% if post_created %}
-                        <script>
-                            showToast('Post created successfully!', 'success');
-                        </script>
-                {% endif %}
+          {% if post_created %}
+            <!-- Show success message if post is created -->
+            <script>
+              showToast('Post created successfully!', 'success');
+            </script>
+          {% endif %}
 
-                {% if post_edited %}
-                        <script>
-                            showToast('Post edited successfully!', 'success');
-                        </script>
-                {% endif %}
-                
-                <p class="card-text ">
-                    {{ post.content | safe }}
-                </p>
-                <div class="row">
-                    <div class="col-md-2">
-                        <strong>
-                            {% if user.is_authenticated %}
-                            <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
-                                {% csrf_token %}
-                                {% if liked %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i
-                                        class="fas fa-heart"></i></button>
-                                {% else %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i
-                                        class="far fa-heart"></i></button>
-                                {% endif %}
-                            </form>
-                            {% else %}
-                            <span class="text-secondary"><i class="far fa-heart"></i></span>
-                            {% endif %}
-                            <span class="text-secondary">{{ post.number_of_likes }} </span>
-                        </strong>
-                    </div>
-                    <div class="col-md-2">
-                        {% with comments.count as total_comments %}
-                        <strong class="text-secondary"><i class="far fa-comments"></i>
-                            {{ total_comments }}</strong>
-                        {% endwith %}
-                    </div>
-                    <div class="col-md-2">
-                        <strong>
-                            {% if user.is_authenticated %}
-                            <form class="d-inline" action="{% url 'toggle_bookmark' post.id %}" method="POST">
-                                {% csrf_token %}
-                                {% if bookmarked %}
-                                <button type="submit" name="blogpost_id" value="{{ post.id }}" class="btn-bookmark">
-                                    <i class="fas fa-bookmark"></i>
-                                </button>
-                                {% else %}
-                                <button type="submit" name="blogpost_id" value="{{ post.id }}" class="btn-bookmark">
-                                    <i class="far fa-bookmark"></i>
-                                </button>
-                                {% endif %}
-                            </form>
-                            {% else %}
-                            <span class="text-secondary"><i class="far fa-bookmark"></i></span>
-                            {% endif %}
-                        </strong>
-                    </div>
-                    <div class="col-md-2">
-                        {% if user.is_authenticated and user == post.author %}
-                        <a href="{% url 'edit_post' slug=post.slug %}">Edit</a>
-                        {% endif %}
-                    </div>
-                    <div class="col-md-2">
-                        {% if user.is_authenticated and user == post.author %}
-                        <a href="{% url 'confirm_delete' slug=post.slug %}">Delete</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col">
-            <hr>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 card mb-4 mt-3 ">
-            <h3>Comments:</h3>
-            <div class="card-body">
-                {% for comment in comments %}
-                <div class="comments" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        {% if comment.commentor.id %}
-                        <a href="{% url 'view_profile' comment.commentor.id %}">{{ comment.commentor.username }}</a>
-                        {% else %}
-                        {{comment.name}}
-                        {% endif %}
-                        <span class=" text-muted font-weight-normal">
-                            {{ comment.created_on }}
-                        </span> wrote:
-                    </p>
-                    {{ comment.body | linebreaks }}
-                    <div class="button-container">
-                        <form action="{% url 'like_comment' comment.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="btn-like">
-                                {% if request.user in comment.likes.all %}
-                                <i class="fas fa-heart text-danger"></i>
-                                {% else %}
-                                <i class="far fa-heart"></i>
-                                {% endif %}
-                            </button>
-                            <span class="text-secondary">{{ comment.likes.count }}</span>
-                        </form>
-                        {% if request.user == comment.commentor %}
-                        <form action="{% url 'delete_comment' comment.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="comment-delete">x</button>
-                        </form>
-                        {% endif %}
-                    </div>
-    
-                </div>
-                {% endfor %}
-
-            </div>
-        </div>
-        <div class="col-md-4 card mb-4 mt-3">
-            <div class="card-body">
-                {% if commented %}
-                <div class="alert alert-success" role="alert">
-                    Your comment is awaiting approval
-                </div>
-                {% else %}
+          {% if post_edited %}
+            <!-- Show success message if post is edited -->
+            <script>
+              showToast('Post edited successfully!', 'success');
+            </script>
+          {% endif %}
+          
+          <!-- Display post content -->
+          <p class="card-text ">
+            {{ post.content | safe }}
+          </p>
+          <div class="row">
+            <div class="col-md-2">
+              <strong>
                 {% if user.is_authenticated %}
-
-                <h3>Leave a comment:</h3>
-                <p>Posting as: {{ user.username }}</p>
-                <form method="post" style="margin-top: 1.3em;">
-                    {{ comment_form | crispy }}
+                  <!-- Like button for authenticated users -->
+                  <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-                </form>
+                    {% if liked %}
+                      <button type="submit" name="blogpost_id" value="{{ post.slug }}" class="btn-like"><i class="fas fa-heart"></i></button>
+                    {% else %}
+                      <button type="submit" name="blogpost_id" value="{{ post.slug }}" class="btn-like"><i class="far fa-heart"></i></button>
+                    {% endif %}
+                  </form>
+                {% else %}
+                  <span class="text-secondary"><i class="far fa-heart"></i></span>
                 {% endif %}
-                {% endif %}
+                <!-- Display the number of likes -->
+                <span class="text-secondary">{{ post.number_of_likes }} </span>
+              </strong>
             </div>
+            <!-- Display the number of comments -->
+            <div class="col-md-2">
+              <strong class="text-secondary"><i class="far fa-comments"></i>{{ comments.count }}</strong>
+            </div>
+            <div class="col-md-2">
+              <strong>
+                {% if user.is_authenticated %}
+                  <!-- Bookmark button for authenticated users -->
+                  <form class="d-inline" action="{% url 'toggle_bookmark' post.id %}" method="POST">
+                    {% csrf_token %}
+                    {% if bookmarked %}
+                      <button type="submit" name="blogpost_id" value="{{ post.id }}" class="btn-bookmark">
+                        <i class="fas fa-bookmark"></i>
+                      </button>
+                    {% else %}
+                      <button type="submit" name="blogpost_id" value="{{ post.id }}" class="btn-bookmark">
+                        <i class="far fa-bookmark"></i>
+                      </button>
+                    {% endif %}
+                  </form>
+                {% else %}
+                  <span class="text-secondary"><i class="far fa-bookmark"></i></span>
+                {% endif %}
+              </strong>
+            </div>
+            <div class="col-md-2">
+              {% if user.is_authenticated and user == post.author %}
+                <!-- Edit link for post author -->
+                <a href="{% url 'edit_post' slug=post.slug %}">Edit</a>
+              {% endif %}
+            </div>
+            <div class="col-md-2">
+              {% if user.is_authenticated and user == post.author %}
+                <!-- Delete link for post author -->
+                <a href="{% url 'confirm_delete' slug=post.slug %}">Delete</a>
+              {% endif %}
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+    
+    <div class="row">
+      <div class="col">
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 card mb-4 mt-3 ">
+        <h3>Comments:</h3>
+        <div class="card-body">
+          <!-- Loop through comments and display each one -->
+          {% for comment in comments %}
+            <div class="comments" style="padding: 10px;">
+              <p class="font-weight-bold">
+                {% if comment.commentor.id %}
+                  <a href="{% url 'view_profile' comment.commentor.id %}">{{ comment.commentor.username }}</a>
+                {% else %}
+                  {{ comment.name }}
+                {% endif %}
+                <span class=" text-muted font-weight-normal">
+                  {{ comment.created_on }}
+                </span> wrote:
+              </p>
+              {{ comment.body | linebreaks }}
+              <div class="button-container">
+                <!-- Like button for comments -->
+                <form action="{% url 'like_comment' comment.id %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn-like">
+                    {% if request.user in comment.likes.all %}
+                      <i class="fas fa-heart text-danger"></i>
+                    {% else %}
+                      <i class="far fa-heart"></i>
+                    {% endif %}
+                  </button>
+                  <!-- Display the number of likes for the comment -->
+                  <span class="text-secondary">{{ comment.likes.count }}</span>
+                </form>
+                {% if request.user == comment.commentor %}
+                  <!-- Delete button for comment author -->
+                  <form action="{% url 'delete_comment' comment.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="comment-delete">x</button>
+                  </form>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-4 card mb-4 mt-3">
+        <div class="card-body">
+          {% if commented %}
+            <!-- Show a success message if the comment is awaiting approval -->
+            <div class="alert alert-success" role="alert">
+              Your comment is awaiting approval
+            </div>
+          {% else %}
+            {% if user.is_authenticated %}
+              <!-- Comment form for authenticated users -->
+              <h3>Leave a comment:</h3>
+              <p>Posting as: {{ user.username }}</p>
+              <form method="post" style="margin-top: 1.3em;">
+                {{ comment_form | crispy }}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+              </form>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock content %}

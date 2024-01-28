@@ -16,10 +16,10 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
-from posts.views import home_view
 from posts import views
 from allauth.account.views import PasswordResetView
 
+# Various url path for site navigation
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('posts.urls'), name='posts_urls'),

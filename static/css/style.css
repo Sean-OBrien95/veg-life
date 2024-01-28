@@ -1,3 +1,5 @@
+/* Generic styling for home page */
+
 body {
     font-family: 'Montserrat', sans-serif;
     color: #595959;
@@ -84,6 +86,8 @@ h1 {
     margin-top: 20px;
 }
 
+/* Styling for cards on post for home page */
+
 .card-title {
     margin-bottom: 10px;
 }
@@ -129,6 +133,8 @@ h1 {
     height: 33vh;
     width: 100%;
 }
+
+/* Styling for buttons used throughout site  */
 
 .btn-like {
     color: #E84610;
@@ -218,6 +224,8 @@ h1 {
     cursor: pointer;
 }
 
+/* Styling for search bar area */
+
 #magnify {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
@@ -244,6 +252,8 @@ h1 {
     display: flex;
     justify-content: center;
 }
+
+/* Styling for profile section */
 
 .profile-picture {
     width: 100px;
@@ -274,6 +284,8 @@ h1 {
 
 }
 
+/* Styling for comments */
+
 .comment {
     padding-top: 10px;
 }
@@ -296,6 +308,8 @@ h1 {
     align-items: center;
 }
 
+/* Social styling */
+
 .social-links {
     text-align: center;
 }
@@ -311,15 +325,9 @@ h1 {
     color: #999999
 }
 
+/* Misc stylings */
+
 #id_body {
-    max-width: 100%;
-}
-
-.summernote-div {
-    max-width: 100%;
-}
-
-.panel-heading {
     max-width: 100%;
 }
 

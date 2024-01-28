@@ -7,19 +7,23 @@
             <h2>Your Bookmarks</h2>
 
             {% if user.bookmarks.all %}
+            <!-- Display bookmarks if user has any -->
             <ul>
                 {% for bookmark in user.bookmarks.all %}
+                <!-- Loop through each bookmark -->
                 <li>
                     <a href="{% url 'post_detail' slug=bookmark.post.slug %}">
                         {{ bookmark.post.title }}
+                        <!-- Display post title with a link to its detail page -->
                     </a>
                 </li>
                 {% endfor %}
             </ul>
             {% else %}
+            <!-- Display message if user has no bookmarks -->
             <p>No bookmarks yet.</p>
+            {% endif %}
         </div>
     </div>
 </div>
-{% endif %}
 {% endblock %}

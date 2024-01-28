@@ -1,11 +1,14 @@
 {% extends "base.html" %}
+
 {% load allauth i18n %}
 
 {% block head_title %}
+    <!-- Block for setting the title of the page to "Sign Out" -->
     {% trans "Sign Out" %}
 {% endblock head_title %}
 
 {% block content %}
+    <!-- Block for the main content of the page -->
     <div class="container">
         <div class="row">
             <div class="col-md-8 mt-3 offset-md-2">
@@ -17,7 +20,9 @@
         <div class="row">
             <div class="col-md-8 mt-3 offset-md-2">
                 <form class="login" method="POST" action="{% url 'account_logout' %}">
+                    <!-- Define the URL for the logout action -->
                     {% url 'account_logout' as action_url %}
+
                     {% element form method="post" action=action_url no_visible_fields=True %}
                         {% slot body %}
                             {% csrf_token %}
@@ -33,6 +38,7 @@
         </div>
     </div>
 
+    <!-- Check if the user is authenticated before rendering the logout form -->
     {% endif %}
         {% endslot %}
 
