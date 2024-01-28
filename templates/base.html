@@ -1,120 +1,106 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/7cd7c13538.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <link rel="icon" type="image/png" href="{% static 'images/VegLife-Logo.jpg' %}">
-    <meta name="description" content="VegLife, a blog post website all about veganism">
-    <meta name="keywords" content="VegLife, Vegan, vegetarion, vegetables">
-    <title>VegLife</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/7cd7c13538.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="icon" type="image/png" href="{% static 'images/VegLife-Logo.jpg' %}">
+  <meta name="description" content="VegLife, a blog post website all about veganism">
+  <meta name="keywords" content="VegLife, Vegan, vegetarion, vegetables">
+  <title>VegLife</title>
+</head>
 
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-          <a class="navbar-brand" id="logo" href="{% url 'home' %}">VegLife</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto" id="nav-bar">
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">Home</a>
-              </li>
-              {% if user.is_authenticated %}
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" id="logo" href="{% url 'home' %}">VegLife</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto" id="nav-bar">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            {% if user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'view_profile' %}">Profile</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
               </li>
-              {% else %}
+            {% else %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'account_login' %}">Login</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'account_signup' %}">Signup</a>
               </li>
-              {% endif %}
-            </ul>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        {% for message in messages %}
+          <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+            {{ message | safe }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
-        </div>
-      </nav>
-    </header>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                {% for message in messages %}
-                <div class="alert {{ message.tags }} alert-dismissible fade show" 
-                id="msg" role="alert">
-                    {{ message | safe }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                    aria-label="Close"></button>
-                </div>
-
-                {% endfor %}
-            </div>
-        </div>
+        {% endfor %}
+      </div>
     </div>
+  </div>
 
-    <main>{% block content %}{% endblock %}</main>
+  <main>{% block content %}{% endblock %}</main>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-    <footer>
-        <ul class="social-links">
-            <li>
-                <a href="http://facebook.com" target="_blank" rel="noopener"
-                    aria-label="Visit the Skate Friendly Facebook page (new tab will open)">
-                    <i class="fa-brands fa-square-facebook"></i></a>
-            </li>
-            <li>
-                <a href="http://instagram.com" target="_blank" rel="noopener"
-                    aria-label="Visit the Skate Friendly Instagram page (new tab will open)">
-                    <i class="fa-brands fa-square-instagram"></i></a>
-            </li>
-            <li>
-                <a href="http://twitter.com" target="_blank" rel="noopener"
-                    aria-label="Visit the Skate Friendly Twitter page (new tab will open)">
-                    <i class="fa-brands fa-square-twitter"></i></a>
-            </li>
-            <li>
-                <a href="http://youtube.com" target="_blank" rel="noopener"
-                    aria-label="Visit the Skate Friendly YouTube page (new tab will open)">
-                    <i class="fa-brands fa-square-youtube"></i></a>
-            </li>
-        </ul>
-    </footer>
-    <script>
-        setTimeout(function () {
-            let messages = document.getElementById('msg');
-            let alert = new bootstrap.Alert(messages);
-            alert.close();
-        }, 2500);
-    </script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <footer>
+    <ul class="social-links">
+      <li>
+        <i class="fa-brands fa-square-facebook">
+          <a href="http://facebook.com" 
+          target="_blank" rel="noopener" 
+          aria-label="Visit the VegLife Facebook page (new tab will open)">
+          </a>
+        </i>
+      </li>
+      <li>
+        <i class="fa-brands fa-square-instagram">
+          <a href="http://instagram.com" target="_blank" 
+          rel="noopener" 
+          aria-label="Visit the VegLife Instagram page (new tab will open)"></a>
+        </i>
+      </li>
+      <li>
+        <i class="fa-brands fa-square-twitter">
+          <a href="http://twitter.com" 
+          target="_blank" rel="noopener" 
+          aria-label="Visit the VegLife Twitter page (new tab will open)"></a>
+          </i>
+      </li>
+    </ul>
+  </footer>
+
+  <script>
+    setTimeout(function () {
+      let messages = document.getElementById('msg');
+      let alert = new bootstrap.Alert(messages);
+      alert.close();
+    }, 2500);
+  </script>
+</body>
 </html>
