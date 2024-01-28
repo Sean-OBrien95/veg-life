@@ -4,10 +4,10 @@ from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
 
 
-
+# Defining choices of published or drafted
 STATUS = ((0, "Draft"), (1, "Published"))
 
-
+# Model for creating and keeping record of blog posts
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -39,7 +39,7 @@ class Post(models.Model):
     def number_of_likes(self):
         return self.likes.count()
 
-
+# Model for comments on blog posts
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE,
                              related_name="comments")
@@ -60,7 +60,7 @@ class Comment(models.Model):
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
 
-
+# Custom user profile model, used to store information on profiles
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
@@ -73,7 +73,7 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-
+# Model for tracking bookmarked posts
 class Bookmark(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='bookmarks')

@@ -2,6 +2,7 @@ from . import views
 from django.urls import path
 from .views import user_bookmarks, PostList, view_profile
 
+# Various paths for site navigation
 urlpatterns = [
     path('', views.PostList.as_view(), name='home'),
     path('create_post/', views.create_post, name='create_post'),
