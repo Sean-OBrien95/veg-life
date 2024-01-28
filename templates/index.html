@@ -66,9 +66,14 @@
                         class="card-img-top img-fluid"
                         src="{% static 'images/veg-default.jpg' %}"
                         style="overflow: hidden;"
+                        alt="Stock image of vegetables"
                       />
                     {% else %}
-                      <img class="card-img-top img-fluid" src="{{ post.featured_image.url }}" style="overflow: hidden;"/>
+                      <img class="card-img-top img-fluid"
+                      src="{{ post.featured_image.url }}"
+                      style="overflow: hidden;"
+                      alt="Article main image"
+                      />
                     {% endif %}
                     <!-- Author information overlay on the image -->
                     <div class="image-flash">
@@ -94,7 +99,7 @@
             <!-- Check for every 2nd post to create a new row -->
             {% if forloop.counter|divisibleby:2 %}
         </div>
-        <div class="row">{% endif %} {% endfor %}
+        <div class="row">{% endif %} {% endfor %} </div>
       </div>
     </div>
     <!-- Pagination navigation -->
