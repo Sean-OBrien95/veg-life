@@ -6,8 +6,9 @@
             <h2>Are you sure you want to delete your profile?</h2>
             <form action="{% url 'delete_profile' user.id %}" method="post">
                 {% csrf_token %}
-                <button type="submit">Yes</button>
-                <a href="{% url 'view_profile' %}"><button type="button">No</button></a>
+                <button type="submit" class="btn btn-custom">Yes</button>
+                <br>
+                <a href="{% url 'view_profile' %}"><button type="button" class="btn btn-delete">No</button></a>
             </form>
         </div>
     </div>

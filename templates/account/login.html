@@ -35,9 +35,9 @@
                         />
                     {% endif %}
                     {% slot actions %}
-                        {% element button type="submit" tags="prominent,login" %}
+                        <button type="submit" class="btn btn-custom">
                             {% trans "Sign In" %}
-                        {% endelement %}
+                        </button>
                     {% endslot %}
                 {% endelement %}
                 </form>
