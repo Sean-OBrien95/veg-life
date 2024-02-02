@@ -14,9 +14,9 @@
         <div class="col-md-4 masthead-image d-none d-md-block">
           <!-- Featured image with fallback to a default image -->
           {% if "placeholder" in post.featured_image.url %}
-            <img src="{% static 'images/veg-default.jpg' %}" width="100%">
+            <img src="{% static 'images/veg-default.jpg' %}" alt="Place holder image of post" class="post-img img-fluid">
           {% else %}
-            <img src="{{ post.featured_image.url }}" width="100%">
+            <img src="{{ post.featured_image.url }}" alt="Featured image of post" class="post-img img-fluid">
           {% endif %}
         </div>
       </div>
