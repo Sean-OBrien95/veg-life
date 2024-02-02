@@ -26,18 +26,18 @@
             {% if user == request.user %}
             <div class="row">
                 <div>
-                    <a href="{% url 'edit_profile' %}">
-                        <button class="btn btn-custom profile-btn">Edit <i class="fa-regular fa-pen-to-square"></i></button>
+                    <a href="{% url 'edit_profile' %}" class="btn btn-custom profile-btn">
+                        Edit <i class="fa-regular fa-pen-to-square"></i>
                     </a>
                 </div>
                 <div>
-                    <a href="{% url 'user_bookmarks' %}">
-                        <button class="btn btn-custom profile-btn">Bookmarks <i class="far fa-bookmark"></i></button>
+                    <a href="{% url 'user_bookmarks' %}" class="btn btn-custom profile-btn">
+                        Bookmarks <i class="far fa-bookmark"></i>
                     </a>
                 </div>
                 <div>
-                    <a href="{% url 'confirm_profile_delete' %}">
-                        <button class="btn btn-delete profile-btn">Delete <i class="fa-solid fa-x"></i></button>
+                    <a href="{% url 'confirm_profile_delete' %}" class="btn btn-delete profile-btn">
+                        Delete <i class="fa-solid fa-x"></i>
                     </a>
                 </div>
             </div>

@@ -272,7 +272,7 @@ def delete_post(request, slug):
 # View to confirm profile deletion
 @login_required
 def confirm_profile_delete(request):
-    return render(request, 'confirm_profile_delete.html')
+    return render(request, 'profile/confirm_profile_delete.html')
 
 
 # View to delete a user profile
