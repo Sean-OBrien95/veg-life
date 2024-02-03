@@ -24,7 +24,7 @@ body {
     position: relative;
     width: 100%;
     height: 400px;
-    background-image: url('../images/veg-home.jpg');
+    background-image: url('{% static "images/veg-home.jpg" %}');
     background-size: cover;
     background-position: center;
 }
