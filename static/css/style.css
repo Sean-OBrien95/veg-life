@@ -24,7 +24,7 @@ body {
     position: relative;
     width: 100%;
     height: 400px;
-    background-image: url('{% static "images/veg-home.jpg" %}');
+    background-image: url('https://res.cloudinary.com/dlgfneidi/image/upload/v1706974017/static/images/veg-home.de744e0330d1.jpg');
     background-size: cover;
     background-position: center;
 }
