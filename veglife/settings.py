@@ -31,6 +31,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
 ALLOWED_HOSTS = [
     '8000-sean-obrien95-veg-life-wyjt3j0dvl.us2.codeanyapp.com', 'https://veg-life-e7290059d7ac.herokuapp.com/', '8000-seanobrien95-veglife-3r5ds5ppvii.ws-eu108.gitpod.io']
 
