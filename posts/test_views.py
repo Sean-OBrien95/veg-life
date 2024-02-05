@@ -7,7 +7,9 @@ from django.contrib import messages
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404
 
+
 class ViewTests(TestCase):
+
     def setUp(self):
         # Create a test user
         self.user = User.objects.create_user(
@@ -29,7 +31,8 @@ class ViewTests(TestCase):
 
     def test_post_like_view(self):
         self.client.login(username='testuser', password='testpassword')
-        response = self.client.post(reverse('post_like', args=[self.post.slug]))
+        response = self.client.post(
+            reverse('post_like', args=[self.post.slug]))
         self.assertEqual(response.status_code, 302)
         self.assertTrue(self.post.likes.filter(id=self.user.id).exists())
 
@@ -46,24 +49,29 @@ class ViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_post_detail_view(self):
-        response = self.client.get(reverse('post_detail', args=[self.post.slug]))
+        response = self.client.get(
+            reverse('post_detail', args=[self.post.slug]))
         self.assertEqual(response.status_code, 200)
 
     def test_post_detail_view_post_method(self):
-        response = self.client.post(reverse('post_detail', args=[self.post.slug]))
+        response = self.client.post(
+            reverse('post_detail', args=[self.post.slug]))
         self.assertEqual(response.status_code, 200)
 
     def test_post_detail_view_comment_post_method(self):
         self.client.login(username='testuser', password='testpassword')
-        response = self.client.post(reverse('post_detail', args=[self.post.slug]), {})
+        response = self.client.post(
+            reverse('post_detail', args=[self.post.slug]), {})
         self.assertEqual(response.status_code, 200)
 
     def test_post_detail_view_invalid_slug(self):
-        response = self.client.get(reverse('post_detail', args=['invalid-slug']))
-        self.assertEqual(response.status_code, 404) 
+        response = self.client.get(
+            reverse('post_detail', args=['invalid-slug']))
+        self.assertEqual(response.status_code, 404)
 
     def test_confirm_delete_view(self):
-        response = self.client.get(reverse('confirm_delete', args=[self.post.slug]))
+        response = self.client.get(
+            reverse('confirm_delete', args=[self.post.slug]))
         self.assertEqual(response.status_code, 403)
 
     def test_confirm_profile_delete_view(self):
@@ -71,7 +79,8 @@ class ViewTests(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_delete_profile_view(self):
-        response = self.client.get(reverse('delete_profile', args=[self.user.id]))
+        response = self.client.get(
+            reverse('delete_profile', args=[self.user.id]))
         self.assertEqual(response.status_code, 302)
 
     def test_delete_profile_view_unauthorized(self):
@@ -79,8 +88,10 @@ class ViewTests(TestCase):
             username='unauthorized',
             password='unauthorizedpassword'
         )
-        self.client.login(username='unauthorized', password='unauthorizedpassword')
-        response = self.client.get(reverse('delete_profile', args=[self.user.id]))
+        self.client.login(
+            username='unauthorized', password='unauthorizedpassword')
+        response = self.client.get(
+            reverse('delete_profile', args=[self.user.id]))
         self.assertEqual(response.status_code, 302)
 
     def test_delete_comment_view(self):
@@ -89,7 +100,8 @@ class ViewTests(TestCase):
             commentor=self.user,
             body='Test Comment'
         )
-        response = self.client.get(reverse('delete_comment', args=[comment.id]))
+        response = self.client.get(
+            reverse('delete_comment', args=[comment.id]))
         self.assertEqual(response.status_code, 302)
 
     def test_delete_comment_view_unauthorized(self):
@@ -97,13 +109,15 @@ class ViewTests(TestCase):
             username='unauthorized',
             password='unauthorizedpassword'
         )
-        self.client.login(username='unauthorized', password='unauthorizedpassword')
+        self.client.login(
+            username='unauthorized', password='unauthorizedpassword')
         comment = Comment.objects.create(
             post=self.post,
             commentor=self.user,
             body='Test Comment'
         )
-        response = self.client.get(reverse('delete_comment', args=[comment.id]))
+        response = self.client.get(
+            reverse('delete_comment', args=[comment.id]))
         self.assertEqual(response.status_code, 302)
 
     def test_comment_approval_view(self):
@@ -122,9 +136,11 @@ class ViewTests(TestCase):
 
     def test_toggle_bookmark_view(self):
         self.client.login(username='testuser', password='testpassword')
-        response = self.client.get(reverse('toggle_bookmark', args=[self.post.id]))
+        response = self.client.get(
+            reverse('toggle_bookmark', args=[self.post.id]))
         self.assertEqual(response.status_code, 302)
-        self.assertTrue(Bookmark.objects.filter(user=self.user, post=self.post).exists())
+        self.assertTrue(
+            Bookmark.objects.filter(user=self.user, post=self.post).exists())
 
     def test_user_bookmarks_view_unauthenticated(self):
         response = self.client.get(reverse('user_bookmarks'))
@@ -135,12 +151,12 @@ class ViewTests(TestCase):
             username='unauthorized',
             password='unauthorizedpassword'
         )
-        self.client.login(username='unauthorized', password='unauthorizedpassword')
-        response = self.client.get(reverse('confirm_delete', args=[self.post.slug]))
+        self.client.login(
+            username='unauthorized', password='unauthorizedpassword')
+        response = self.client.get(
+            reverse('confirm_delete', args=[self.post.slug]))
         self.assertEqual(response.status_code, 403)
 
     def test_confirm_profile_delete_view_unauthenticated(self):
         response = self.client.get(reverse('confirm_profile_delete'))
         self.assertEqual(response.status_code, 302)
-
-

@@ -7,7 +7,9 @@ class PostModelTest(TestCase):
     def setUp(self):
         # Create a user for testing
         self.user = User.objects.create_user(
-            username='testuser', password='testpassword', email='test@example.com'
+            username='testuser',
+            password='testpassword',
+            email='test@example.com'
         )
 
     def test_post_model_creation(self):
@@ -30,7 +32,9 @@ class PostModelTest(TestCase):
             status=1,
         )
         user_liking_post = User.objects.create_user(
-            username='liker', password='testpassword', email='liker@example.com'
+            username='liker',
+            password='testpassword',
+            email='liker@example.com'
         )
         post.likes.add(user_liking_post)
         self.assertEqual(post.number_of_likes(), 1)
@@ -40,7 +44,9 @@ class CommentModelTest(TestCase):
     def setUp(self):
         # Create a user for testing
         self.user = User.objects.create_user(
-            username='testuser', password='testpassword', email='test@example.com'
+            username='testuser',
+            password='testpassword',
+            email='test@example.com'
         )
         # Create a post for testing
         self.post = Post.objects.create(
@@ -62,14 +68,17 @@ class CommentModelTest(TestCase):
         self.assertEqual(comment.post, self.post)
         self.assertEqual(comment.commentor, self.user)
         self.assertEqual(comment.body, 'This is a test comment body.')
-        self.assertEqual(str(comment), 'Comment This is a test comment body. by Test Commentor')
+        self.assertEqual(str(comment),
+                         'Comment This is a test comment body. by Test Commentor')
 
 
 class UserProfileModelTest(TestCase):
     def setUp(self):
         # Create a user for testing
         self.user = User.objects.create_user(
-            username='testuser', password='testpassword', email='test@example.com'
+            username='testuser',
+            password='testpassword',
+            email='test@example.com'
         )
 
     def test_user_profile_model_creation(self):
@@ -92,7 +101,9 @@ class BookmarkModelTest(TestCase):
     def setUp(self):
         # Create a user for testing
         self.user = User.objects.create_user(
-            username='testuser', password='testpassword', email='test@example.com'
+            username='testuser',
+            password='testpassword',
+            email='test@example.com'
         )
         # Create a post for testing
         self.post = Post.objects.create(

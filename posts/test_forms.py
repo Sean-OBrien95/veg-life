@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .forms import PostForm, ProfileForm
 
+
 class PostFormTest(TestCase):
     def test_valid_post_form(self):
         form_data = {
@@ -17,7 +18,7 @@ class PostFormTest(TestCase):
         form_data = {}
         form = PostForm(data=form_data)
         self.assertFalse(form.is_valid())
-        self.assertEqual(len(form.errors), 2)  # Expecting 4 errors for all fields
+        self.assertEqual(len(form.errors), 2)
 
 
 class ProfileFormTest(TestCase):
@@ -33,7 +34,7 @@ class ProfileFormTest(TestCase):
         self.assertTrue(form.is_valid())
 
     def test_invalid_profile_form(self):
-    # Testing with invalid data, in this case, missing required fields
+        # Testing with invalid data, in this case, missing required fields
         form_data = {
             'interests': 'Coding, Reading',
             'favorite_animal': 'Dolphin',
