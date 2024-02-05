@@ -30,9 +30,7 @@ def create_post(request):
 
             # Pull featured image if one stored
             new_post.featured_image = request.FILES.get('featured_image', None)
-            # if 'featured_image' in request.FILES:
-            #     new_post.featured_image = request.FILES['featured_image']
-
+        
             new_post.save()
 
             messages.success(request, 'Post created successfully!')
@@ -217,19 +215,22 @@ def view_profile(request, user_id=None):
 # View to edit a post
 @login_required
 def edit_post(request, slug):
-
     post = get_object_or_404(Post, slug=slug)
 
     # Check if the current user has permission to edit the post
     if request.user != post.author:
-        return HttpResponseForbidden(
-            "You don't have permission to edit this post.")
+        return HttpResponseForbidden("You don't have permission to edit this post.")
 
     if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
+        # Pass both request.POST and request.FILES to the form
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
-            # If the form is valid, save the form data to update the post
-            edited_post = form.save()
+            edited_post = form.save(commit=False)
+            edited_post.author = request.user
+            edited_post.status = 1
+            edited_post.featured_image = request.FILES.get('featured_image', None)
+            edited_post.save()
+
             messages.success(request, 'Post updated successfully!')
             return redirect('post_detail', slug=edited_post.slug)
     else:
