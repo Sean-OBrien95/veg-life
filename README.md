@@ -236,34 +236,38 @@ Please see attached wireframes for the main pages of the project, being the home
 <img src="static/images/deletepost_desk.png" alt="Image of delete post screen on desktop">
 <img src="static/images/deletepost_mobile.png" alt="Image of delete post screen on mobile">
 
-- Equipment content
+# Profile
 
-- This section goes over the various equipment needs of a new skater such as skates, wheels, and accessories.
+- The profile section can be accessed through the navbar for logged in users.
+- It will have your profile picture (or a default image) in a circle on the top left, followed by your username
+- Below this will be your basic info, or which ever users page your ons basic info
+- This is info such as how long your vegan, a bio, interested, and favourite animal.
+- If this is your page you will also see an edit, bookmark, and delete button.
 
-<img src="assets/images/equipment-content.png" alt="Photo of equipment content">
+<img src="static/images/profile_desk.png" alt="Image of profile from desktop view">
+<img src="static/images/profile_mobile.png" alt="Image of profile from mobile view">
 
-# Contact Page
+# Edit profile
 
-- Main image for page, this image has a smiling woman, I chose this as it is inviting and would suit a contact page. This also features the zoom effect.
+- The edit profile section is where users can change their information
+- It is a basic form that allows users to upload a photo for their progile photo, update bio, include interests, and enter their favourite animal
+- They will also have a selection of vegan length, which is drop down menu for them to select from
+- Including this information is entirely option
 
-<img src="assets/images/contact-demo-photo.png" alt="Photo of main contact image">
+<img src="static/images/edit_profile.png" alt="Image of edit profile form">
 
-- The contact form was designed to take the users name, surname, and email.
-- Styling this I decided to use a clear border and have the border be visible through a shadow effect, I chose this as I felt it was a more unique design.
-- I then added a radio dial button for users to select their level of experience.
-- I then made a submit button, this button was designed with rounded edges and to change colour when hovered over.
-- It also gets a cursor when hovered over to let the user know it is able to be clicked.
-- All parts of the form are required to be filled before you can submit.
+# Bookmarks
 
-* Once you complete the form and submit, you are redirected to a thank you site.
+- This the section where a user will be able to see every post they have bookmarked.
+- By clicking any of these, they will be taken to that specific post.
+- If the user has not bookmarked any post a paragraph will appear saying no bookmarked posts yet
 
-<img src="assets/images/contact-form.png" alt="Photo of submission form">
+<img src="static/images/bookmark_desk.png" alt="Photo of bookmark section on desktop">
+<img src="static/images/bookmark_mobile.png" alt="Photo of bookmark section on mobile">
 
-# Thank you page
+# Delete profile
 
-- The thank you page is a redirect from the submission form, it is a simple page displaying a thank you message that will redirect you back tot he home page after 10 seconds.
 
-<img src="assets/images/thank-you.png" alt="Photo of thank you page">
 
 # 404 Error page
 
