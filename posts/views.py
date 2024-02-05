@@ -10,6 +10,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Q
 from django.contrib import messages
+from django.http import HttpResponseForbidden
 
 
 # View to create a new post
@@ -18,7 +19,7 @@ def create_post(request):
 
     # Redirect non-superusers
     if not request.user.is_superuser:
-        return redirect('')
+        return redirect('home')
 
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -26,6 +27,7 @@ def create_post(request):
             new_post = form.save(commit=False)
             new_post.author = request.user
             new_post.status = 1
+            new_post.save()
 
             # Pull featured image if one stored
             if 'featured_image' in request.FILES:
@@ -70,23 +72,18 @@ class PostList(generic.ListView):
 class PostDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
-        # Retrieve all published posts
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         comments = post.comments.filter(approved=True).order_by('created_on')
 
-        # Check if current user has liked the post
         liked = False
-        if post.likes.filter(id=self.request.user.id).exists():
-            liked = True
+        if request.user.is_authenticated:
+            liked = post.likes.filter(id=request.user.id).exists()
 
-        # Check if current user has bookmarked the post
         bookmarked = False
         if request.user.is_authenticated:
-            bookmarked = Bookmark.objects.filter(
-                user=request.user, post=post).exists()
+            bookmarked = Bookmark.objects.filter(user=request.user, post=post).exists()
 
-        # Render the post_detail.html template with relevant context data
         return render(
             request,
             "post_detail.html",
@@ -102,21 +99,18 @@ class PostDetail(View):
         )
 
     def post(self, request, slug, *args, **kwargs):
-        # Retrieve all published posts
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
-
-        # Get the IDs of comments liked by the user
-        liked_comments = list(
-            request.user.comment_likes.all().values_list('id', flat=True))
         comments = post.comments.filter(approved=True).order_by('created_on')
 
-        # Check if the current user has liked the post
         liked = False
-        if post.likes.filter(id=self.request.user.id).exists():
-            liked = True
+        if request.user.is_authenticated:
+            liked = post.likes.filter(id=request.user.id).exists()
 
-        # Create a CommentForm instance with POST data
+        bookmarked = False
+        if request.user.is_authenticated:
+            bookmarked = Bookmark.objects.filter(user=request.user, post=post).exists()
+
         comment_form = CommentForm(data=request.POST)
 
         if comment_form.is_valid():
@@ -126,19 +120,30 @@ class PostDetail(View):
             comment.post = post
             comment.commentor = request.user
             comment.save()
-        else:
-            comment_form = CommentForm()
 
-        # Render the post_detail.html template with relevant context data
+            return render(
+                request,
+                "post_detail.html",
+                {
+                    "post": post,
+                    "comments": comments,
+                    "commented": True,
+                    "liked": liked,
+                    "comment_form": CommentForm()
+                },
+            )
+
         return render(
             request,
             "post_detail.html",
             {
                 "post": post,
                 "comments": comments,
-                "commented": True,
+                "commented": False,
                 "liked": liked,
-                "comment_form": CommentForm()
+                "bookmarked": bookmarked,
+                "comment_form": comment_form,
+                "author_id": post.author.id
             },
         )
 
@@ -198,20 +203,6 @@ def edit_profile(request):
                   {'form': form, 'user_profile': user_profile})
 
 
-# View to handle user registration
-def register_view(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('home')
-    else:
-        form = UserCreationForm()
-
-    return render(request, 'registration.html', {'form': form})
-
-
 # View to display user profile
 @login_required
 def view_profile(request, user_id=None):
@@ -253,9 +244,8 @@ def confirm_delete(request, slug):
 
     if request.user == post.author:
         return render(request, 'confirm_delete.html', {'post': post})
-
-    return redirect('home')
-
+    else:
+        return HttpResponseForbidden("You don't have permission to delete this post.")
 
 # View to delete a post
 def delete_post(request, slug):
@@ -272,7 +262,10 @@ def delete_post(request, slug):
 # View to confirm profile deletion
 @login_required
 def confirm_profile_delete(request):
-    return render(request, 'profile/confirm_profile_delete.html')
+    if request.user == post.author:
+        return render(request, 'profile/confirm_profile_delete.html')
+    else:
+        return HttpResponseForbidden("You don't have permission to delete this profile.")
 
 
 # View to delete a user profile
@@ -309,16 +302,22 @@ def delete_profile(request, user_id):
 
 # View to delete a comment
 def delete_comment(request, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id)
+    try:
+        comment = Comment.objects.get(pk=comment_id)
 
-    if request.user == comment.commentor:
-        post_slug = comment.post.slug
+        # Check if the user is the commentor
+        if comment.commentor == request.user:
+            comment.delete()
+            messages.success(request, 'Comment deleted successfully.')
+        else:
+            messages.error(request, 'You do not have permission to delete this comment.')
 
-        comment.delete()
+        # Redirect to the post detail page or any other desired page
+        return redirect('post_detail', slug=comment.post.slug)
 
-        return redirect('post_detail', slug=post_slug)
-    else:
-        return redirect('error_page')
+    except Comment.DoesNotExist:
+        # Handle the case where the comment is not found
+        return HttpResponseServerError("Comment not found")
 
 
 # View to handle comment approval by a superuser
@@ -326,6 +325,9 @@ def delete_comment(request, comment_id):
 @user_passes_test(lambda u: u.is_superuser, login_url='home')
 def comment_approval(request):
 
+    if not request.user.is_superuser:
+        return HttpResponseForbidden("You don't have permission to access this page.")
+    
     pending_comments = Comment.objects.filter(approved=False)
 
     if request.method == 'POST':
