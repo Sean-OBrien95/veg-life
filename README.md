@@ -143,14 +143,18 @@ Please see attached wireframes for the main pages of the project, being the home
 
 <img src="static/images/searchbar.png" alt="Photo of welcome, search bar, and create post / approve comment buttons">
 
-# Meetup Section
+# Posts Section
 
-- The meetup section
+- The Posts Section
 
-* This section is intended to show the user the location, times, and days of our meetups.
-* They have been designed to have a bakground image that displays the type of environment that they will be skating in. This was chosen as I felt it would be visually appealing and make the design more distinct.
+* This section has two columns running down either side of the page, each column contains up to 3 posts.
+* In these you will see a featured image, a title, the author, an excerpt, as well as the number of likes and the time and date of posting.
+* The posts display in a chronological order and when clicked will bring you to the content of the posts
+* This wil display as a single column on smaller screens
+* If there are more than 6 posts, there will be a next button a the end of the screen to take the user to the next selection of posts.
 
-<img src="assets/images/meetup-demo.png" alt="Photo of just meetup section">
+<img src="static/images/posts_desktop.png" alt="Photo of posts on home page using desktop">
+<img src="static/images/posts_mobile.png" alt="Photo of posts on home page using mobile">
 
 # Footer
 
@@ -158,16 +162,23 @@ Please see attached wireframes for the main pages of the project, being the home
 
 * The footer section will be appearing on all the pages. This has been designed with a minimal approach, using links that will take you to social media pages. I have not created social media pages for each of these so the link will guide to the home page of each website.
 
-<img src="assets/images/footer-demo.png" alt="Photo of just footer section">
+<img src="static/images/footer.png" alt="Photo of footer section">
 
-# Tricks Image
+# Post Details
 
-- Intro image for Tricks
+- The contents of each post
 
-* The intro to the tricks page is a new image of a pair of skates.
-* The zoom effect has also been applied here.
+* When going into a post you will see the image on the right and the title on the left
+* On mobile the image will not appear
+* Beneath you will see the content of the post
+* Lastly is the buttons and like / comment counter. you will see 3 buttons usually unless you created the post, then there is 5
+* Like, comment counter, bookmark button, edit, and delete
+* These display horizontal on desktop and vertical on mobile
 
-<img src="assets/images/tricks-demo-image.png" alt="Photo of tricks main image">
+<img src="static/images/postdetail1_desktop.png" alt="Image of top of post detail page on dektop">
+<img src="static/images/postdetail2_desktop.png" alt="Image of bottom of post detail page on dektop">
+<img src="static/images/postdetail2_mobile.png" alt="Image of top of post detail page on mobile">
+<img src="static/images/postdetail1_mobile.png" alt="Image of bottom of post detail page on mobile">
 
 # Tricks Page Content
 
