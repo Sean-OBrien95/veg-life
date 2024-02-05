@@ -180,41 +180,61 @@ Please see attached wireframes for the main pages of the project, being the home
 <img src="static/images/postdetail2_mobile.png" alt="Image of top of post detail page on mobile">
 <img src="static/images/postdetail1_mobile.png" alt="Image of bottom of post detail page on mobile">
 
-# Tricks Page Content
+# Comment Section
 
-- Content for the Tricks page
+- Comment section displayed on every post
 
-* The page opens with a styled desription of the page. It is clear what this page is for based on decription.
-* Following this are 3 seperate sections describing different trciks as well as having a video underneath them to act as a tutorial.
-* None of these videos play automatically and also have a volume control slider.
+* The comment section displays comments on the left and space for user to comment on the right.
+* Comments will have a link to the user who posted thems profile, a like button, and time and date of posting
+* When liked, the colour will change and the counter will increase.
+* If it is a comment you have posted, there will also be a delete button
+* This is the only delete button that will not ask for confirmation, my reason for this is comments are much shorter and easier to mskr another one, so did not want to add another confirmation page
+* When a user comments it must be approved by a super user, this is to stop spam or inappropriate messages as vegan website are often targets of hate.
 
-<img src="assets/images/tricks-vids-demo.png" alt="Photo of content on tricks page">
+<img src="static/images/comment_desktop.png" alt="Image of comment section on desktop">
+<img src="static/images/comment_mobile.png" alt="Image of comment section on mobile">
 
-# FAQ Page Photo
+# Create Post form
 
-- Main Image on FAQ page
+- Form for post creation
 
-- Similar to the other images, I felt this image captured the energy of the website.
-- This also has a zoom effect applied.
+- A simple form using summernote for the content.
+- This has a title, content, image, and excerpt section
+- summernote was used here so the poster can make text bold as well as other stylings
 
-<img src="assets/images/faq-demo-image.png" alt="Photo of faq main image">
+<img src="static/images/create_postdesk.png" alt="Photo of create post form on desktop">
+<img src="static/images/create_postmobile.png" alt="Photo of create post form on mobile">
 
-# FAQ Content
+# Approve Comments Page
 
-- FAQ section
+- Page for approving comments
 
-- This section was designed to answer any questions the user may have when getting into skating.
-- It includes plenty of basic information as well as a link to the contact page which keeps you in the same tab.
+- This is the page where super users can approve all other users comments.
+- There will be an option next to the comment section and if they are accepted you will be taken to the page of the post to show the comment is now there.
+- If you decide to delete the post you are also taken back to the original post, but the comment will not appear and will be wiped from the system.
+- If there are no comments, the user will be told this.
 
-* In this section there are 3 column sections similar in design to the home page to break up the information in an easy digestible way for the user.
+<img src="static/images/approve_comments_desk.png" alt="Photo of comment approval page on desktop">
+<img src="static/images/approve_comments_mobile.png" alt="Photo of comment approval page on mobile">
+<img src="static/images/approve_comments_empty.png" alt="Photo of comment approval page with no comments to approve">
 
-<img src="assets/images/faq-content.png" alt="Photo of faq content">
+# Edit post
 
-- Safety
+- Form for editing posts
 
-- This section was designed to explain to users best safety practice, along with including a link that open in another page to buy safety gear.
+- This section is pretty much identical to post creation.
+- It includes everything the same and when saved the post will be updated, and the user will be given feedback
 
-<img src="assets/images/safety-content.png" alt="Photo of safety content">
+<img src="static/images/edit_post.png" alt="Image of post edit page">
+
+# Delete Post
+
+- This section is what a user will see wwhen deleting a post.
+- They will be given a confirmation screen, if they select yes the post will be removed, they will be directed to the home screen, and given feedback
+- If they do not accept, they will be directed back to the unchanged post
+
+<img src="static/images/deletepost_desk.png" alt="Image of delete post screen on desktop">
+<img src="static/images/deletepost_mobile.png" alt="Image of delete post screen on mobile">
 
 - Equipment content
 
