@@ -29,8 +29,9 @@ def create_post(request):
             new_post.status = 1
 
             # Pull featured image if one stored
-            if 'featured_image' in request.FILES:
-                new_post.featured_image = request.FILES['featured_image']
+            new_post.featured_image = request.FILES.get('featured_image', None)
+            # if 'featured_image' in request.FILES:
+            #     new_post.featured_image = request.FILES['featured_image']
 
             new_post.save()
 
