@@ -27,7 +27,6 @@ def create_post(request):
             new_post = form.save(commit=False)
             new_post.author = request.user
             new_post.status = 1
-            new_post.save()
 
             # Pull featured image if one stored
             if 'featured_image' in request.FILES:
