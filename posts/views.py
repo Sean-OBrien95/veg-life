@@ -263,11 +263,7 @@ def delete_post(request, slug):
 # View to confirm profile deletion
 @login_required
 def confirm_profile_delete(request):
-    if request.user == post.author:
-        return render(request, 'profile/confirm_profile_delete.html')
-    else:
-        return HttpResponseForbidden("You don't have permission to delete this profile.")
-
+    return render(request, 'profile/confirm_profile_delete.html')
 
 # View to delete a user profile
 @login_required
