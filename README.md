@@ -377,6 +377,8 @@ Unresolved bugs:
 
 # Automated Testing
 
+
+
 # Full Manual Testing
 
 The following devices were used during testing:
@@ -594,60 +596,67 @@ All features that are on multiple pages (eg. Logo, Nav bar, Social media links) 
     </tr>
 </table>
 
-# Deployment
+## Deployment
 
-- This was deployed in Github, I had done this by going to the seeting of the project, going down to pages in the sidebar, selecting the main branch, and deploying.
-- the link to view this is here: https://sean-obrien95.github.io/skate-friendly/
+To deploy this project, I used Heroku, a cloud platform that allows you to easily host web applications. Follow these steps to access the deployed version:
+
+* Visit the deployed application: https://veg-life-e7290059d7ac.herokuapp.com/
+* You can explore the live version of the project to see it in action.
 
 # Forking and Cloning
 
 ## Forking the Repository
 
-- Navigate to the main page of the "skate-friendly" repository on GitHub.
-- Click on the Fork button in the upper-right corner of the page.
-- This will create a copy of the repository under your GitHub account.
+To contribute to this project or create your own version, you can fork this GitHub repository. Forking creates a copy of the repository under your GitHub account. Follow these steps to fork the repository:
+
+* Click the "Fork" button at the top right corner of this repository's page.
+* This will create a copy of the repository under your own GitHub account.
 
 ## Cloning the Repository
 
-- On your forked repository page, click on the Code button.
-- Select the HTTPS option to clone the repository using a secure connection.
-- Copy the URL that is shown, which will be https://github.com/sean-obrien95/skate-friendly.git
-- Open a terminal on your local machine.
-- Navigate to the directory where you want to clone the repository.
-- Run the following command: git clone https://github.com/sean-obrien95/skate-friendly.git
-- This will create a local copy of the repository on your machine.
+To work with the code locally on your machine, you can clone the repository. Here's how:
+
+* Open your terminal or command prompt.
+* Navigate to the directory where you want to store the project.
+* Run the following command to clone the repository:
+
+git clone https://github.com/Sean-OBrien95/Veg-Life.git
 
 # Credit
 
-- Picture credit 1 (hero image): Image by Katya Wolf: https://www.pexels.com/photo/a-roller-skater-tying-the-lace-8733401/
-- Health benefits of roller skating taken from WebMD: https://www.webmd.com/fitness-exercise/what-to-know-about-roller-skating#:~:text=Ways%20that%20roller%20skating%20can%20benefit%20your%20body,Making%20you%20more%20flexible%207%20Increasing%20your%20agility
-- Woods photo on home page: Photo by Fabian Wiktor: https://www.pexels.com/photo/selective-focus-photo-of-grass-in-forest-3466355/
-- Dublin Convention Center Photo: Photo by Bhomick Attri: https://www.pexels.com/photo/an-illuminated-building-during-night-time-11827803/
-- Coast line photo: Photo by Nati: https://www.pexels.com/photo/scenic-view-of-sea-and-boats-16015100/
-- photo on tricks page: Photo by Laura Stanley: https://www.pexels.com/photo/white-and-red-roller-skates-2005992/
-- photo on faq page: Photo by RDNE Stock project: https://www.pexels.com/photo/woman-in-pink-tank-top-and-white-shorts-sitting-on-gray-concrete-road-7335426/
-- photo on contact page: Photo by RDNE Stock project: https://www.pexels.com/photo/woman-sitting-on-green-grass-wearing-roller-skates-7335209/
-- Youtube videos from moxie roller skates https://www.youtube.com/watch?v=s56SKfk9608
-  and queer girl straight skates https://www.youtube.com/watch?v=tKkdItBQM9U https://www.youtube.com/watch?v=nUm9hZ7Xbf8
-- Favicon: fav icon: <a target="_blank" href="https://icons8.com/icon/BtCQacVxJCK1/skate">Skate</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+## Packages
+
+asgiref                3.7.2 - https://pypi.org/project/asgiref/
+cloudinary             1.36.0 - https://pypi.org/project/cloudinary/
+coverage               7.4.1 - https://pypi.org/project/coverage/
+dj-database-url        0.5.0 - https://pypi.org/project/dj-database-url/
+dj3-cloudinary-storage 0.0.6 - https://pypi.org/project/dj3-cloudinary-storage/
+Django                 3.2.23 - https://docs.djangoproject.com/en/5.0/topics/install/
+django-allauth         0.58.2 - https://pypi.org/project/django-allauth/
+django-crispy-forms    1.14.0 - https://pypi.org/project/django-crispy-forms/
+django-summernote      0.8.20.0 - https://pypi.org/project/django-summernote/
+gunicorn               21.2.0 - https://pypi.org/project/gunicorn/
+oauthlib               3.2.2 - https://pypi.org/project/oauthlib/
+pillow                 10.2.0 - https://pypi.org/project/pillow/
+psycopg2               2.9.9 - https://pypi.org/project/psycopg2/
+PyJWT                  2.8.0 - https://pypi.org/project/PyJWT/
+python3-openid         3.2.0 - https://pypi.org/project/python3-openid/
+pytz                   2023.3.post1 - https://pypi.org/project/pytz/
+requests-oauthlib      1.3.1 - https://pypi.org/project/requests-oauthlib/
+sqlparse               0.4.4 - https://pypi.org/project/sqlparse/ 
+
+Bootstrap              5.3.2 - https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+## Images
+
+- VegLife logo image: https://www.istockphoto.com/vector/abstract-green-leaf-logo-icon-vector-design-ecology-icon-set-eco-icon-gm1045368942-279747493
+- Veg stock photohome page: Photo by Rauf Allahverdiyev: <https://www.pexels.com/photo/tomatoes-1367242/>
+- Default veg photo credit: wfmynews2 <http://content.kens5.com/photo/2017/10/22/vegetables_1508727313637_11456014_ver1.0.jpg>
+- Default profile pic from researchgate: <https://www.researchgate.net/post/Why_is_RNA_contamination_effecting_my_PCR_product_size>
+- Images used for profile pictures and posts may have been taken from google images, but are not hard coded into the project.
 
 ### I had learned some commands from the following websites
 
-- Flex commands: https://stackoverflow.com/questions/38948102/center-one-and-right-left-align-other-flexbox-element
-- Using transition fade on submit button: https://www.w3schools.com/csS/css3_buttons.asp
-- Applying shadow effect to contact form: https://blog.logrocket.com/how-to-style-forms-with-css-a-beginners-guide/
-
-* Command for youtube videos: https://www.w3schools.com/html/html_youtube.asp
-
-
-
-
-
-
-
-Veg stock photohome page: Photo by Rauf Allahverdiyev: <https://www.pexels.com/photo/tomatoes-1367242/>
-Django using summernote
-
-Defaukt veg photo creadit wfmynews2 <http://content.kens5.com/photo/2017/10/22/vegetables_1508727313637_11456014_ver1.0.jpg>
-
-Default profile pic from researchgate: <https://www.researchgate.net/post/Why_is_RNA_contamination_effecting_my_PCR_product_size>
+- Learned allauth configuration here: https://docs.allauth.org/en/latest/account/configuration.html
+- How to add background image as a static image: https://stackoverflow.com/questions/39769469/the-way-to-use-background-image-in-css-files-with-django
+- Various Bootsrap commands: https://www.w3schools.com/bootstrap/
