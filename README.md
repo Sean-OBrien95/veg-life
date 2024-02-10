@@ -267,7 +267,11 @@ Please see attached wireframes for the main pages of the project, being the home
 
 # Delete profile
 
+# Login Page
 
+# Logout Page
+
+# Registeration Page
 
 # 404 Error page
 
@@ -289,6 +293,10 @@ Throughout the project I had encountered several bugs which I will give details 
 
 Resolved bugs:
 
+- An issue I encoutered was when starting out the project and setting up the registration page using allauth. The page was giving me an error when ever I correctly completed the form. This was a redirection but I noticed it was not happening on a different browser. I realised the issue was with the browser settings I had configured but once had moved browser it was working perfectly.
+- Another issue I encountered was extending the base.html to my allauth pages, eg. login/logout etc. After changing it to extend the correct html it was still not showing visually. I had noticed I had accidentally has the allauth files in my directory twice and the one I was working for was the incorrect one. after extending the base in the correct file and eleteing the duplicate it worked as expected.
+- 
+
 - An issue I encountered was when developing my FAQ page. After designing it the footer was going up the page vertically and not horizontally at the bottom. I assumed it must be an issue with HTML and not CSS as it was unique to this page. After scanning through, I noticed I had left a tag unclosed, trying this brought most down to horizontal level, but not all. Then I noticed the entire thing was in one big section. When breaking it off into smaller one the issue had resolved.
 - An issue I had encountered when making my page responsive was with my logo. I had it floated to the left and then pushed out with padding to the center. This looked good on desktop but not on other screen sizes. I had initially tried using a flex command to fix this but without much success. I ultimately decided to keep it floated to the left with a small amount of padding as this fixed the issue and made it look good on multiple screen sizes.
 - Another bug I came across when when I was adding in my background images for the hero image. I was not able to get this to fit inside the the area I wanted to without looking distorted. After trying to alter the sizing, I used a larger image and a cover command which resolved the issue.
@@ -296,9 +304,7 @@ Resolved bugs:
 
 Unresolved bugs:
 
-- A bug I have left uncorrected is on the contact page. The styling shows shadowing on the desktop version but when I checked on the mobile this effect does not appear. I have tried to address this by increasing the shadow effect and this has not worked. Due to time constraints I was not able to find an alternative but I will update in future to something that is compatible with ios
-
-- Another bug left uncorrected was the performance of the pages on mobile screens. I researched how to fix this and came across lazy loading. This solution looked like it would fix the issue how ever it would require JavaScript and I wanted to stick to html and css for this project.
+- As far as I am aware there are no unresolved bugs in the project.
 
 # Lighthouse Testing
 
@@ -311,7 +317,9 @@ Unresolved bugs:
 <img src="assets/images/contact-desktop.png" alt="image of lighthouse for contact page on desktop">
 <img src="assets/images/contact-mobile.png" alt="image of lighthouse for contact page on mobile">
 
-# Full Testing
+# Automated Testing
+
+# Full Manual Testing
 
 The following devices were used during testing:
 
