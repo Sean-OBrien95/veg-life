@@ -347,14 +347,33 @@ Unresolved bugs:
 
 # Lighthouse Testing
 
-<img src="assets/images/home-desktop.png" alt="image of lighthouse for homepage on desktop">
-<img src="assets/images/home-mobile.png" alt="image of lighthouse for homepage on mobile">
-<img src="assets/images/tricks-desktop.png" alt="image of lighthouse for tricks page on desktop">
-<img src="assets/images/tricks-mobile.png" alt="image of lighthouse for tricks page on mobile">
-<img src="assets/images/faq-desktop.png" alt="image of lighthouse for faq page on desktop">
-<img src="assets/images/faq-mobile.png" alt="image of lighthouse for faq page on mobile">
-<img src="assets/images/contact-desktop.png" alt="image of lighthouse for contact page on desktop">
-<img src="assets/images/contact-mobile.png" alt="image of lighthouse for contact page on mobile">
+<img src="static/images/lighthouse_home_desk.png" alt="image of lighthouse for homepage on desktop">
+<img src="static/images/lighthouse_home_mobile.png" alt="image of lighthouse for homepage on mobile">
+<img src="static/images/lighthouse_createpost_desk.png" alt="image of lighthouse for create post on desktop">
+<img src="static/images/lighthouse_createpost_mobile.png" alt="image of lighthouse for create post on mobile">
+<img src="static/images/lighthouse_approvecom_desk.png" alt="image of lighthouse for approve comments on desktop">
+<img src="static/images/lighthouse_approvecom_mobile.png" alt="image of lighthouse for approve comments on mobile">
+<img src="static/images/lighthouse_postdetail_desk.png" alt="image of lighthouse for post details on desktop">
+<img src="static/images/lighthouse_postdetail_mobile.png" alt="image of lighthouse for post details on mobile">
+<img src="static/images/lighthouse_delpost_desk.png" alt="image of lighthouse for post deletion on desktop">
+<img src="static/images/lighthouse_delpost_mobile.png" alt="image of lighthouse for post deletion on mobile">
+<img src="static/images/lighthouse_editpost_desk.png" alt="image of lighthouse for post editing on desktop">
+<img src="static/images/lighthouse_editpost_mobile.png" alt="image of lighthouse for post editing on mobile">
+<img src="static/images/lighthouse_profile_desk.png" alt="image of lighthouse for profile on desktop">
+<img src="static/images/lighthouse_profile_mobile.png" alt="image of lighthouse for profile on mobile">
+<img src="static/images/lighthouse_delprof_desk.png" alt="image of lighthouse for profile deletion on desktop">
+<img src="static/images/lighthouse_delprof_mobile.png" alt="image of lighthouse for profile deletion on mobile">
+<img src="static/images/lighthouse_editprof_desk.png" alt="image of lighthouse for profile editing on desktop">
+<img src="static/images/lighthouse_editprof_mobile.png" alt="image of lighthouse for profile editing on mobile">
+<img src="static/images/lighthouse_bookmarks_desk.png" alt="image of lighthouse for bookmarks on desktop">
+<img src="static/images/lighthouse_bookmarks_mobile.png" alt="image of lighthouse for bookmarks on mobile">
+<img src="static/images/lighthouse_bookmarks_desk.png" alt="image of lighthouse for bookmarks on desktop">
+<img src="static/images/lighthouse_signup_desk.png" alt="image of lighthouse for signup on desktop">
+<img src="static/images/lighthouse_signup_mobile.png" alt="image of lighthouse for signup on mobile">
+<img src="static/images/lighthouse_login_desk.png" alt="image of lighthouse for login on desktop">
+<img src="static/images/lighthouse_login_mobile.png" alt="image of lighthouse for login on mobile">
+<img src="static/images/lighthouse_logout_desk.png" alt="image of lighthouse for logout on desktop">
+<img src="static/images/lighthouse_logout_mobile.png" alt="image of lighthouse for logout on mobile">
 
 # Automated Testing
 
