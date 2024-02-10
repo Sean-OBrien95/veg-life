@@ -30,7 +30,6 @@ def create_post(request):
 
             # Pull featured image if one stored
             new_post.featured_image = request.FILES.get('featured_image', None)
-        
             new_post.save()
 
             messages.success(request, 'Post created successfully!')
@@ -80,7 +79,8 @@ class PostDetail(View):
 
         bookmarked = False
         if request.user.is_authenticated:
-            bookmarked = Bookmark.objects.filter(user=request.user, post=post).exists()
+            bookmarked = Bookmark.objects.filter(
+                                        user=request.user, post=post).exists()
 
         return render(
             request,
@@ -107,7 +107,8 @@ class PostDetail(View):
 
         bookmarked = False
         if request.user.is_authenticated:
-            bookmarked = Bookmark.objects.filter(user=request.user, post=post).exists()
+            bookmarked = Bookmark.objects.filter(
+                 user=request.user, post=post).exists()
 
         comment_form = CommentForm(data=request.POST)
 
@@ -219,7 +220,8 @@ def edit_post(request, slug):
 
     # Check if the current user has permission to edit the post
     if request.user != post.author:
-        return HttpResponseForbidden("You don't have permission to edit this post.")
+        return HttpResponseForbidden(
+            "You don't have permission to edit this post.")
 
     if request.method == 'POST':
         # Pass both request.POST and request.FILES to the form
@@ -228,7 +230,8 @@ def edit_post(request, slug):
             edited_post = form.save(commit=False)
             edited_post.author = request.user
             edited_post.status = 1
-            edited_post.featured_image = request.FILES.get('featured_image', None)
+            edited_post.featured_image = request.FILES.get(
+                'featured_image', None)
             edited_post.save()
 
             messages.success(request, 'Post updated successfully!')
@@ -246,7 +249,9 @@ def confirm_delete(request, slug):
     if request.user == post.author:
         return render(request, 'confirm_delete.html', {'post': post})
     else:
-        return HttpResponseForbidden("You don't have permission to delete this post.")
+        return HttpResponseForbidden(
+            "You don't have permission to delete this post.")
+
 
 # View to delete a post
 def delete_post(request, slug):
@@ -264,6 +269,7 @@ def delete_post(request, slug):
 @login_required
 def confirm_profile_delete(request):
     return render(request, 'profile/confirm_profile_delete.html')
+
 
 # View to delete a user profile
 @login_required
@@ -307,7 +313,8 @@ def delete_comment(request, comment_id):
             comment.delete()
             messages.success(request, 'Comment deleted successfully.')
         else:
-            messages.error(request, 'You do not have permission to delete this comment.')
+            messages.error(
+                 request, 'You do not have permission to delete this comment.')
 
         # Redirect to the post detail page or any other desired page
         return redirect('post_detail', slug=comment.post.slug)
@@ -323,8 +330,9 @@ def delete_comment(request, comment_id):
 def comment_approval(request):
 
     if not request.user.is_superuser:
-        return HttpResponseForbidden("You don't have permission to access this page.")
-    
+        return HttpResponseForbidden(
+             "You don't have permission to access this page.")
+
     pending_comments = Comment.objects.filter(approved=False)
 
     if request.method == 'POST':
