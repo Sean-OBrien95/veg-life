@@ -42,6 +42,8 @@ In this section I will be covering the various features I have implemented, who 
 
 These features will include a responsive design where the layout changes depending on screen size, like, comment, and bookmark functionality. A custom model that allows users to create their own profile. Ability to create posts for suoer users. And a pagination system that allows multiple pages to be made for every 6 posts.
 
+There will also be feedback to the user whenever they do something in the form of toats messages. When they create, delete, edit anything such as their profile or a post, they will be given feedback for this.
+
 # User Stories
 
 - User Story 1: Setup Django
@@ -267,17 +269,46 @@ Please see attached wireframes for the main pages of the project, being the home
 
 # Delete profile
 
+- This section will appear after the user has selected to delete their profile.
+- It will have 2 buttons, yes and no.
+- The yes button will delete the profile and bring you back to the home page as a logged out user and give feedback with a toast message.
+- The No button will take you back to your profile.
+
+<img src="static/images/deleteprofile_desk.png" alt="Photo of profile delete section on desktop">
+<img src="static/images/deleteprofile_mobile.png" alt="Photo of profile delete section on mobile">
+
 # Login Page
+
+- This is the allauth page for logging in as a user who has already registered
+- I have altered it slightly to remove the forgot password link, as this is a feature I will not be using in this project.
+
+<img src="static/images/login_desk.png" alt="Photo of login page on desktop">
+<img src="static/images/login_mobile.png" alt="Photo of login page on mobile">
 
 # Logout Page
 
+- This is the allauth page for logging out
+- It is simple and only has one button for confirmtaion.
+
+<img src="static/images/logout_desk.png" alt="Photo of logout page on desktop">
+<img src="static/images/logout_mobile.png" alt="Photo of logout page on mobile">
+
 # Registeration Page
+
+- The registration page is provided by allauth as well
+- It has a section to enter your username, password, confirmation, and has instructions and what kinds of passwords are allowed.
+- There is also an optional section for email
+
+<img src="static/images/registration_desk.png" alt="Photo of signup page on desktop">
+<img src="static/images/registration_mobile.png" alt="Photo of signup page on mobile">
 
 # 404 Error page
 
-- A simple 404 page with basic styling to tells the user they have ended up on a page that doesn't exist. It has an explanation and reedirects back to the home page after 5 seconds.
+- A simple 404 page telling the user that this page does not exist.
+- Includes a link back to the hom page.
 
-<img src="assets/images/404-image.png" alt="Photo of 404 error page">
+<img src="static/images/404_desk.png" alt="Photo of 404 error page on desktop">
+<img src="static/images/404_mobile.png" alt="Photo of 404 error page on mobile">
 
 # Testing
 
