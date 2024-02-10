@@ -319,9 +319,11 @@ Please see attached wireframes for the main pages of the project, being the home
 
 # Testing
 
-- Ran html through W3C validator, have gotten back no errors but have gotten back 'warnings'. These warning are due to use of h1 elements in parts of the page that are not the very top. Due to time constraints, I am not able to change this right away as there is a lot of styling applied. If I were to re do the project, I would keep this in mind for future
+- Ran html through W3C validator, have gotten some small warning back. One of the pages is the Signup / Registration pages which is an allauth page that I am unable to edit. Another is any page using summernote, again which I am unable to edit.
 
-* ran through Jigsaw css checker, no issues.
+- ran through Jigsaw css checker, no issues.
+
+- 
 
 * I have checked screen compatibility for phone and tablet, I have checked tablet by using the inspect tool and shrinking down to size and have tested on my own personal mobile to assure it is responsive.
 
