@@ -310,6 +310,13 @@ Please see attached wireframes for the main pages of the project, being the home
 <img src="static/images/404_desk.png" alt="Photo of 404 error page on desktop">
 <img src="static/images/404_mobile.png" alt="Photo of 404 error page on mobile">
 
+# Future Features
+
+- There were a number of features that I would have liked to implement, but felt they were outside the scope of this project or unneccessary
+- One of these features was giving the user the option to change their password. I had begun implementing this but stopped as I had to make linking emails to profile mandatory and felt this was outside the scope of this project.
+- Another feature I wanted to implement was a dark mode, but has opted against it as I felt it may be too time consuming and not needed for this particular project.
+- I would like to come back at a future date, and implement them in future.
+
 # Testing
 
 - Ran html through W3C validator, have gotten back no errors but have gotten back 'warnings'. These warning are due to use of h1 elements in parts of the page that are not the very top. Due to time constraints, I am not able to change this right away as there is a lot of styling applied. If I were to re do the project, I would keep this in mind for future

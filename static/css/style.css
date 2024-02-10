@@ -51,19 +51,19 @@ h1 {
 }
 
 @media (max-width: 760px) {
-    .text-overlay h1 {
+    h1 {
         font-size: 65px; 
     }
 }
 
 @media (max-width: 580px) {
-    .text-overlay h1 {
+    h1 {
         font-size: 55px; 
     }
 }
 
 @media (max-width: 481px) {
-    .text-overlay h1 {
+    h1 {
         font-size: 40px; 
     }
 }
