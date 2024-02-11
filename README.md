@@ -382,7 +382,9 @@ For the 404 page, full lighthouse testing was not supported so using napshot ver
 
 # Automated Testing
 
+To run the automated testing I had created 3 new test pages, one each for views, models, and forms. This were tested on the default database and then had a coverage report run. The total coverage report came to 85%, and this will be accompanied by my full manual testing.
 
+<img src="static/images/coverage_report.png" alt="image of coverage report">
 
 # Full Manual Testing
 
@@ -399,6 +401,7 @@ Tablet:
 
 Mobile Devices:
 
+- iPhone 15
 - iPhone 12
 - iPhone 12 Pro
 - Samsung Galaxy S8+
@@ -409,6 +412,8 @@ The following browsers were used during testing:
 - Safari
 
 All features that are on multiple pages (eg. Logo, Nav bar, Social media links) will only show up as tested in the first page they appear on, but have been tested on all pages.
+
+All things that link to other pages, eg, posts or profile, have been tested that they bring to the correct page.
 
 ## Home page testing
 
@@ -435,10 +440,24 @@ All features that are on multiple pages (eg. Logo, Nav bar, Social media links) 
         <td>pass</td>
     </tr>
     <tr>
-        <td>Hero image animation</td>
-        <td>Hero image will have a zoom effect on all screen sizes</td>
-        <td>Reloaded page on different screen sizes</td>
-        <td>Animation occured</td>
+        <td>Search Bar</td>
+        <td>Search bar will find specific posts</td>
+        <td>Typed different keywords into searchbar</td>
+        <td>Related posts appeared</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Pagination</td>
+        <td>When more than 6 posts, page will create a new page for additional content</td>
+        <td>Created more than 6 posts</td>
+        <td>Next button appeared with additional posts</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Nav bar changes when logged in</td>
+        <td>When logged in, the nav bar options will change</td>
+        <td>Log in and look at navbar</td>
+        <td>Options changed to profile and logout instead of login and signup</td>
         <td>pass</td>
     </tr>
     <tr>
