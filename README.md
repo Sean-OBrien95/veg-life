@@ -469,7 +469,7 @@ All things that link to other pages, eg, posts or profile, have been tested that
     </tr>
 </table>
 
-## Tricks Page Testing
+## Create Post Testing
 
 <table>
     <tr>
@@ -480,36 +480,43 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <th>Pass/Fail</th>
     </tr>
     <tr>
-        <td>Auto play</td>
-        <td>Videos do not autoplay when page is loaded</td>
-        <td>Reload page and check videos</td>
-        <td>Does not autoplay</td>
+        <td>Title Limit</td>
+        <td>Titles must be below 25 Characters</td>
+        <td>Make a title with over 25 Characters and submit</td>
+        <td>Post is not created warning flagged no title over 25 characters</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Volume tab</td>
-        <td>Videos will allow user to control volume once clicked</td>
-        <td>Start video and mute volume with a click or control with cursor</td>
-        <td>Volume mutes or goes up/down as intended</td>
+        <td>Content Styling</td>
+        <td>All smmernote styling can be used on content</td>
+        <td>Style contetn various ways, eg. Bold, Heders, Italic and submit</td>
+        <td>Content appeared exactly as shown in form</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Pause button</td>
-        <td>Video will be able to be paused at anytime</td>
-        <td>Click center of video and button in bottom left corner</td>
-        <td>Video paused</td>
+        <td>Post images</td>
+        <td>User can upload any image they like and it will appear in the post and preview</td>
+        <td>Upload a photo in the upload photo section and submit</td>
+        <td>Photo shown on post and preview</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Full screen</td>
-        <td>Videos will allow you to go full screen</td>
-        <td>Click full screen icon in bottom right corner</td>
-        <td>Video appeared full screen</td>
+        <td>Default image</td>
+        <td>User can choose to not upload image and a default will appear</td>
+        <td>Don't upload a photo in the upload photo section and submit</td>
+        <td>Default photo shown on post and preview</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Scuccessful post creation toast</td>
+        <td>A success message will appear after creating a post</td>
+        <td>Create a post</td>
+        <td>Green success message appears</td>
         <td>pass</td>
     </tr>
 </table>
 
-## FAQ Page
+## Comment Approval
 
 <table>
     <tr>
@@ -520,22 +527,29 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <th>Pass/Fail</th>
     </tr>
     <tr>
-        <td>Link to contact page</td>
-        <td>When click on the our Contact Page link will take you to contact form in same tab</td>
-        <td>Click on our Contact Page link</td>
-        <td>Opens contact page in same link</td>
+        <td>Nothing to approve</td>
+        <td>When on this page and there are no comments to be approved, a message will shown letting you know</td>
+        <td>Click on approve comments section when nothing to approve</td>
+        <td>Message displaying</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Links to recommended products</td>
-        <td>When clicking on any of the recommended products linked will take you to a new tab with products</td>
-        <td>Click on all 4 of the different links</td>
-        <td>Opens all links in new page with the correct product displayed</td>
+        <td>Taken to post page when approved</td>
+        <td>When a comment is clicked to be approved you will be taken to that page and show it is approved</td>
+        <td>Click approve on a comment</td>
+        <td>Directed to that post and comment will now appear</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Taken to post page when declined</td>
+        <td>When a comment is clicked to be declines you will be taken to that page and show it is not approved</td>
+        <td>Click decline on a comment</td>
+        <td>Directed to that post and comment will not appear and be deleted from system</td>
         <td>pass</td>
     </tr>
 </table>
 
-## Contact Page
+## Post view
 
 <table>
     <tr>
@@ -546,43 +560,113 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <th>Pass/Fail</th>
     </tr>
     <tr>
-        <td>Form must be complete before submitting</td>
-        <td>Form does not allow you to proceed unless every section complete</td>
-        <td>Click submit with some area not complete</td>
-        <td>Does not allow you to continue</td>
+        <td>Can view authors profile</td>
+        <td>When you click authors name, you are taken to their profile</td>
+        <td>Click authors name</td>
+        <td>Directed to their profile</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Email tab</td>
-        <td>Email section will not proceed unless an email address is entered</td>
-        <td>Click on submit with my full name in the email tab</td>
-        <td>Email tab asks me to put in an email address before proceeding</td>
+        <td>Post can be liked/unliked by logged in users</td>
+        <td>When you're logged in and click like/unlike, the counter will increase/decrease and the button will change</td>
+        <td>Click on like/unlike as a logged in user</td>
+        <td>Button changes and counter increases/decreases</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Radio button</td>
-        <td>Only one radio button option can be selected at a time</td>
-        <td>Click one radio button and then click each one after, tried this with every combonation of button</td>
-        <td>Does not allow me to have more than one clicked</td>
+        <td>Comment counter</td>
+        <td>Comment counter increases and decrease when comments are added or removed</td>
+        <td>Leave/delete a comment</td>
+        <td>Counter increases/decreases accordingly</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Submit colour change</td>
-        <td>Submit button changed colour when hovered over</td>
-        <td>Hover over submit button</td>
-        <td>Colour of button changes</td>
+        <td>Bookmark</td>
+        <td>When you're logged in, you can add/remove posts to your bookmarked section</td>
+        <td>Click bookmark button</td>
+        <td>Colour of button changes and added/removed from bookmarked section</td>
         <td>pass</td>
     </tr>
     <tr>
-        <td>Submit button cursor</td>
-        <td>Submit button changes cursor when hovered over</td>
-        <td>Hover over submit button</td>
-        <td>Cursor changes</td>
+        <td>Edit and Delete buttons</td>
+        <td>If you are the author, edit and delete buttons will appear and link to relevant edit and delete pages</td>
+        <td>Login as user and navigate to post you created</td>
+        <td>Edit and Delete button present and take you right places</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Can like/unlike comments</td>
+        <td>If you are logged in, you can like/unlike comments</td>
+        <td>Click like button next to comment</td>
+        <td>Colour changes and couner increases/decrease</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>View commentors profile</td>
+        <td>If you are logged in, you can view profiles of people who left comments</td>
+        <td>Click on users name next to comment</td>
+        <td>Get taken to their profile</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Leave a comment</td>
+        <td>If you are logged in, you can leave a comment</td>
+        <td>Type a comment into the comment section and hit submit</td>
+        <td>Toast message appears telling you waiting for approval</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Delete a comment</td>
+        <td>If you are logged in, you can delete a comment you made</td>
+        <td>Click on the X next to your comment</td>
+        <td>Page reloads without your comment and toast message given for feedback</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Delete a comment</td>
+        <td>If you are logged in, you can delete a comment you made</td>
+        <td>Click on the X next to your comment</td>
+        <td>Page reloads without your comment and toast message given for feedback</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Like and bookmark disabled if logged out</td>
+        <td>If you are logged out, you can not like or bookmark</td>
+        <td>Try like or bookmark as a logged out user</td>
+        <td>Can not do buttins disabled</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Comments disabled if logged out</td>
+        <td>If you are logged out, you can not comment</td>
+        <td>Try comment as a logged out user</td>
+        <td>Can not do comment box disabled</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Can't view author profile if logged out</td>
+        <td>If you are logged out, you can not view authors profile</td>
+        <td>Try view authors profile as a logged out user</td>
+        <td>When name clicked directed to login page</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Can't view commentors profile if logged out</td>
+        <td>If you are logged out, you can not view commentors profile</td>
+        <td>Try view commentors as a logged out user</td>
+        <td>When name clicked linked back to login page</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Can't like comments if logged out</td>
+        <td>If you are logged out, you can not like comments</td>
+        <td>Try like a comment as a logged out user</td>
+        <td>Redirected to login page</td>
         <td>pass</td>
     </tr>
 </table>
 
-## Thank You Page
+## Edit Post
 
 <table>
     <tr>
@@ -593,10 +677,224 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <th>Pass/Fail</th>
     </tr>
     <tr>
-        <td>Redirect to home page</td>
-        <td>When left on page for 10 seconds, you will be redirected to home page</td>
-        <td>Load page and wait 10 seconds</td>
-        <td>Redirected to home page</td>
+        <td>Post can be edited by author</td>
+        <td>When you on edit, you are taken to the edit page</td>
+        <td>Click on edit as the author</td>
+        <td>Directed to edit page that looks and works the same as create page</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Info saved after submitted</td>
+        <td>When you change info on the edit page such as image or content, this is refelected on the post and preview</td>
+        <td>Change all information on the post and submit</td>
+        <td>Displaying exactly as it is intended and green toast message appears</td>
+        <td>pass</td>
+    </tr>
+</table>
+
+## Delete Post
+
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Expected Outcome</th>
+        <th>Test</th>
+        <th>Result</th>
+        <th>Pass/Fail</th>
+    </tr>
+    <tr>
+        <td>Taken to delete post confirmation page</td>
+        <td>When you click delete button, you are taken to the  delete confirmation page</td>
+        <td>Click on delete button on post</td>
+        <td>Directed to delet confirmation page</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Post not deleted</td>
+        <td>When No is selected, you are taken back to home page</td>
+        <td>Click no on profile deletion</td>
+        <td>Taken to home page</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Post deleted</td>
+        <td>When Yes is selected, you are taken back to home page and the post is deleted</td>
+        <td>Click yes on profile deletion</td>
+        <td>Taken to home page, post is now deleted, and red toast message appears confirming deletion</td>
+        <td>pass</td>
+    </tr>
+</table>
+
+## Profile
+
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Expected Outcome</th>
+        <th>Test</th>
+        <th>Result</th>
+        <th>Pass/Fail</th>
+    </tr>
+    <tr>
+        <td>Page is shown as blank when first created</td>
+        <td>If you first visit your profile, yu have a default profil picture and all sections display blank</td>
+        <td>Create a new profile and go to the profile section</td>
+        <td>Default profile photo and all fields blank</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Edit, Bookmarked, Delete only appear on your profile</td>
+        <td>When logged in, certain buttons wfor edit bokmarks and delete will only appear on your own profile</td>
+        <td>Go to someone else profile</td>
+        <td>These buttons do not appear</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Edited info and page saves</td>
+        <td>When a user edits their bio, profile photo, interests, vegan length, and favourite animal it saves to their profile</td>
+        <td>Update all info on edit page and click save</td>
+        <td>All info is updated as expected, green toast message giving feedback</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Saved Bookmarks</td>
+        <td>When a user selectes the bookmark section, all bookmarked posts will be displayed here</td>
+        <td>Click bookmarks section after bookmarking some posts</td>
+        <td>Post titles appear here ina  list</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Bookmark Links</td>
+        <td>When a user selectes a title from the bookmark section, they are taken to that post</td>
+        <td>Click title in bookmark section</td>
+        <td>Get taken to that post</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>No Bookmarks</td>
+        <td>When a user selectes the bookmark section, if they have not bookmarked anything it will say no bookmarks yet</td>
+        <td>Click bookmarks section without bookmarking anything</td>
+        <td>Told no bookmarks yet</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>No Bookmarks</td>
+        <td>When a user selectes the bookmark section, if they have not bookmarked anything it will say no bookmarks yet</td>
+        <td>Click bookmarks section without bookmarking anything</td>
+        <td>Told no bookmarks yet</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Delete profile option</td>
+        <td>When a user clicks delete on their own profile, they are taken to a confirmation page</td>
+        <td>Click delete button</td>
+        <td>Taken to confirmation screen</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Don't delete profile</td>
+        <td>When a user clicks no to deleting profile, they ar4e taken back to their profile screen</td>
+        <td>Click no to delete</td>
+        <td>Taken to profile</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Full profile deletion</td>
+        <td>When a user clicks yes to deleting profile, they are logged out, profile deleted, cannot recover, likes, comments, and posts written are all deleted permanently</td>
+        <td>Click yes to deleting profile, try log in and look for likes, comments, and created posts</td>
+        <td>Taken to home page, red toast message profile deleted, cannot log back in all traced of user gone</td>
+        <td>pass</td>
+    </tr>
+</table>
+
+## Registration
+
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Expected Outcome</th>
+        <th>Test</th>
+        <th>Result</th>
+        <th>Pass/Fail</th>
+    </tr>
+    <tr>
+        <td>Creating a user</td>
+        <td>When you complete registration form with valid information, you're given user access</td>
+        <td>Complete form with valid username and password</td>
+        <td>Profile created and given user access, green toast message appears</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Name duplication</td>
+        <td>When you complete registration form with a username that already exists you are given an error</td>
+        <td>Complete form with a username that already exists</td>
+        <td>Username already exists message</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Special characters</td>
+        <td>When you complete registration form with special characters in username you are given error</td>
+        <td>Complete form with special charactres is username</td>
+        <td>Given error</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Creating a user</td>
+        <td>When you complete registration form with valid information, you're given user access</td>
+        <td>Complete form with valid username and password</td>
+        <td>Profile created and given user access</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Password compliance</td>
+        <td>When you complete registration form a password that does not fit what is outlined on the form you are given an error</td>
+        <td>Complete form with invalid password</td>
+        <td>Get error, told which rules are not being considered</td>
+        <td>pass</td>
+    </tr>
+</table>
+
+## Login
+
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Expected Outcome</th>
+        <th>Test</th>
+        <th>Result</th>
+        <th>Pass/Fail</th>
+    </tr>
+    <tr>
+        <td>Login</td>
+        <td>When you complete login form with a username that matches password, you are logged in</td>
+        <td>Complete form with correct username and password combo</td>
+        <td>Logged in as user, green toast message appears</td>
+        <td>pass</td>
+    </tr>
+    <tr>
+        <td>Login Failed</td>
+        <td>When you complete login form with a username and password that is incorrect, you are given an error</td>
+        <td>Complete form with a username and password combo that is incorrect</td>
+        <td>Error message appears told incorrect</td>
+        <td>pass</td>
+    </tr>
+</table>
+
+## Logout
+
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Expected Outcome</th>
+        <th>Test</th>
+        <th>Result</th>
+        <th>Pass/Fail</th>
+    </tr>
+    <tr>
+        <td>Logout</td>
+        <td>Sign out button logs current user out</td>
+        <td>Hit sign out button</td>
+        <td>User signed out, given green toast message to let user know</td>
         <td>pass</td>
     </tr>
 </table>
@@ -612,10 +910,10 @@ All things that link to other pages, eg, posts or profile, have been tested that
         <th>Pass/Fail</th>
     </tr>
     <tr>
-        <td>Redirect to home page</td>
-        <td>When left on page for 5 seconds, you will be redirected to home page</td>
-        <td>Load page and wait 5 seconds</td>
-        <td>Redirected to home page</td>
+        <td>Page not found</td>
+        <td>When you try access a page that does not exist, you are told so and given a link to the home page</td>
+        <td>Go to a page that doesnt exist</td>
+        <td>Told doesnt exist and given a link to home page</td>
         <td>pass</td>
     </tr>
 </table>
