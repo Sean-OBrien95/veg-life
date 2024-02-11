@@ -375,6 +375,11 @@ Unresolved bugs:
 <img src="static/images/lighthouse_logout_desk.png" alt="image of lighthouse for logout on desktop">
 <img src="static/images/lighthouse_logout_mobile.png" alt="image of lighthouse for logout on mobile">
 
+For the 404 page, full lighthouse testing was not supported so using napshot versions on this page only
+
+<img src="static/images/lighthouse_404_desk.png" alt="image of lighthouse for 404 on desktop">
+<img src="static/images/lighthouse_404_mobile.png" alt="image of lighthouse for 404 on mobile">
+
 # Automated Testing
 
 
