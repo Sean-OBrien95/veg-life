@@ -48,56 +48,67 @@
 
   <!-- Main content area with paginated posts -->
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 mt-2 left">
-        <div class="row row-cols-1 row-cols-md-2">
-          {% for post in post_list %}
-            <div class="col-md-6">
-              <div class="card mb-6">
-                <div class="card-body">
-                  <div class="post-container">
-                    <!-- Featured image with fallback to a default image -->
-                    {% if "placeholder" in post.featured_image.url %}
-                      <img
-                        class="card-img-top img-fluid"
-                        src="{% static 'images/veg-default.jpg' %}"
+    {% if post_list %}
+      <div class="row">
+        <div class="col-12 mt-2 left">
+          <div class="row row-cols-1 row-cols-md-2">
+            {% for post in post_list %}
+              <div class="col-md-6">
+                <div class="card mb-6">
+                  <div class="card-body">
+                    <div class="post-container">
+                      <!-- Featured image with fallback to a default image -->
+                      {% if "placeholder" in post.featured_image.url %}
+                        <img
+                          class="card-img-top img-fluid"
+                          src="{% static 'images/veg-default.jpg' %}"
+                          style="overflow: hidden;"
+                          alt="Stock image of vegetables"
+                        >
+                      {% else %}
+                        <img class="card-img-top img-fluid"
+                        src="{{ post.featured_image.url }}"
                         style="overflow: hidden;"
-                        alt="Stock image of vegetables"
-                      >
-                    {% else %}
-                      <img class="card-img-top img-fluid"
-                      src="{{ post.featured_image.url }}"
-                      style="overflow: hidden;"
-                      alt="Article main image"
-                      >
-                    {% endif %}
-                    <!-- Author information overlay on the image -->
-                    <div class="image-flash">
-                      <p class="author">Author: {{ post.author }}</p>
+                        alt="Article main image"
+                        >
+                      {% endif %}
+                      <!-- Author information overlay on the image -->
+                      <div class="image-flash">
+                        <p class="author">Author: {{ post.author }}</p>
+                      </div>
                     </div>
-                  </div>
-                  <!-- Post details and link to full post -->
-                  <div>
-                    <a href="{% url 'post_detail' post.slug %}" class="post-link">
-                      <h2 class="card-title">{{ post.title }}</h2>
-                      <p class="card-text">{{ post.excerpt }}</p>
-                    </a>
-                    <hr>
-                    <!-- Post metadata -->
-                    <p class="card-text text-muted h6">
-                      {{ post.created_on }} <i class="far fa-heart"></i>
-                      {{ post.number_of_likes }}
-                    </p>
+                    <!-- Post details and link to full post -->
+                    <div>
+                      <a href="{% url 'post_detail' post.slug %}" class="post-link">
+                        <h2 class="card-title">{{ post.title }}</h2>
+                        <p class="card-text">{{ post.excerpt }}</p>
+                      </a>
+                      <hr>
+                      <!-- Post metadata -->
+                      <p class="card-text text-muted h6">
+                        {{ post.created_on }} <i class="far fa-heart"></i>
+                        {{ post.number_of_likes }}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- Check for every 2nd post to create a new row -->
-            {% if forloop.counter|divisibleby:2 %}
+              <!-- Check for every 2nd post to create a new row -->
+              {% if forloop.counter|divisibleby:2 %}
+          </div>
+          <div class="row">{% endif %} 
+            {% endfor %}
+          </div>
         </div>
-        <div class="row">{% endif %} {% endfor %} </div>
       </div>
-    </div>
+      {% else %}
+      <!-- Display message for no posts available -->
+      <div class="row justify-content-center">
+        <div class="col-6 text-center">
+          <p  id="no_post">No posts available, try searching something else!</p>
+        </div>
+      </div>
+    {% endif %}
     <!-- Pagination navigation -->
     {% if is_paginated %}
       <nav aria-label="Page navigation">
