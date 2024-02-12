@@ -7,14 +7,18 @@ from django.core.validators import MaxLengthValidator
 from allauth.account.forms import LoginForm
 
 
-# Define a form for comments
+"""
+Define a form for comments
+"""
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('body',)
 
 
-# Define a form for creating posts
+"""
+Define a form for creating posts
+"""
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
@@ -32,12 +36,16 @@ class PostForm(forms.ModelForm):
             limit_value=25, message='Title must be 25 characters or fewer.'))
 
 
-# Define a form for liking a comment
+"""
+Define a form for liking a comment
+"""
 class LikeCommentForm(forms.Form):
     comment_id = forms.IntegerField()
 
 
-# Define a registration form extending UserCreationForm
+"""
+Define a registration form extending UserCreationForm
+"""
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField()
 
@@ -46,14 +54,18 @@ class RegistrationForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 
-# Define a form for user details
+"""
+Define a form for user details
+"""
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
 
 
-# Define a form for user profile details
+"""
+Define a form for user profile details
+"""
 class ProfileForm(forms.ModelForm):
 
     VEGAN_DURATION_CHOICES = [
@@ -74,7 +86,9 @@ class ProfileForm(forms.ModelForm):
                   'vegan_duration', 'favorite_animal', 'interests']
 
 
-# Define a custom login form extending LoginForm
+"""
+Define a custom login form extending LoginForm
+"""
 class MyCustomLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

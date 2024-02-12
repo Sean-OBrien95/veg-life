@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from .models import Post, Comment, UserProfile, Bookmark
 
 
+"""
+Creating a post for and liking it for testing
+"""
 class PostModelTest(TestCase):
     def setUp(self):
         # Create a user for testing
@@ -40,6 +43,9 @@ class PostModelTest(TestCase):
         self.assertEqual(post.number_of_likes(), 1)
 
 
+"""
+Creating  apost and commenting for test purposes
+"""
 class CommentModelTest(TestCase):
     def setUp(self):
         # Create a user for testing
@@ -72,6 +78,9 @@ class CommentModelTest(TestCase):
                          'Comment This is a test comment body. by Test Commentor')
 
 
+"""
+Testing the users profile
+"""
 class UserProfileModelTest(TestCase):
     def setUp(self):
         # Create a user for testing
@@ -97,6 +106,9 @@ class UserProfileModelTest(TestCase):
         self.assertEqual(str(user_profile), 'testuser')
 
 
+"""
+Testing functionality of the bookmark model
+"""
 class BookmarkModelTest(TestCase):
     def setUp(self):
         # Create a user for testing

@@ -1,7 +1,9 @@
 from django.test import TestCase
 from .forms import PostForm, ProfileForm
 
-
+"""
+Test run on forms for creating posts using valid and invalid data
+"""
 class PostFormTest(TestCase):
     def test_valid_post_form(self):
         form_data = {
@@ -21,6 +23,9 @@ class PostFormTest(TestCase):
         self.assertEqual(len(form.errors), 2)
 
 
+"""
+Test run on forms for profiles using valid and invalid data
+"""
 class ProfileFormTest(TestCase):
     def test_valid_profile_form(self):
         form_data = {

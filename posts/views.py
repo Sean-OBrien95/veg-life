@@ -12,8 +12,9 @@ from django.db.models import Q
 from django.contrib import messages
 from django.http import HttpResponseForbidden
 
-
-# View to create a new post
+"""
+View to create a new post
+"""
 @login_required
 def create_post(request):
 
@@ -41,13 +42,18 @@ def create_post(request):
     return render(request, 'create_post.html', {'form': form})
 
 
-# Class-based view for displaying a list of posts
+"""
+Class-based view for displaying a list of posts
+"""
 class PostList(generic.ListView):
 
     model = Post
     template_name = 'index.html'
     paginate_by = 6
 
+    """
+    Def on how to organise posts
+    """
     def get_queryset(self):
         # Get the value of 'q' from the request's GET parameters
         query = self.request.GET.get('q')
@@ -65,7 +71,9 @@ class PostList(generic.ListView):
             return Post.objects.filter(status=1).order_by('-created_on')
 
 
-# Class-based view for displaying post details and handling comments
+"""
+Class-based view for displaying post details and handling comments
+"""
 class PostDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
@@ -147,7 +155,9 @@ class PostDetail(View):
         )
 
 
-# Class-based view for handling post likes
+"""
+Class-based view for handling post likes
+"""
 class PostLike(View):
 
     def post(self, request, slug, *args, **kwargs):
@@ -161,7 +171,9 @@ class PostLike(View):
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
-# View to handle liking/unliking a comment
+"""
+View to handle liking/unliking a comment
+"""
 @login_required
 def like_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
@@ -174,7 +186,9 @@ def like_comment(request, comment_id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-# View to edit user profile
+"""
+View to edit user profile
+"""
 @login_required
 def edit_profile(request):
     try:
@@ -202,7 +216,9 @@ def edit_profile(request):
                   {'form': form, 'user_profile': user_profile})
 
 
-# View to display user profile
+"""
+View to display user profile
+"""
 @login_required
 def view_profile(request, user_id=None):
     if user_id:
@@ -213,7 +229,9 @@ def view_profile(request, user_id=None):
     return render(request, 'profile/view_profile.html', {'user': user})
 
 
-# View to edit a post
+"""
+View to edit a post
+"""
 @login_required
 def edit_post(request, slug):
     post = get_object_or_404(Post, slug=slug)
@@ -242,7 +260,9 @@ def edit_post(request, slug):
     return render(request, 'edit_post.html', {'form': form, 'post': post})
 
 
-# View to confirm post deletion
+"""
+View to confirm post deletion
+"""
 def confirm_delete(request, slug):
     post = get_object_or_404(Post, slug=slug)
 
@@ -253,7 +273,9 @@ def confirm_delete(request, slug):
             "You don't have permission to delete this post.")
 
 
-# View to delete a post
+"""
+View to delete a post
+"""
 def delete_post(request, slug):
     post = get_object_or_404(Post, slug=slug)
 
@@ -265,20 +287,26 @@ def delete_post(request, slug):
     return redirect('home')
 
 
-# View to confirm profile deletion
+"""
+View to confirm profile deletion
+"""
 @login_required
 def confirm_profile_delete(request):
     return render(request, 'profile/confirm_profile_delete.html')
 
 
-# View to delete a user profile
+"""
+View to delete a user profile
+"""
 @login_required
 def delete_profile(request, user_id):
 
     user = get_object_or_404(User, pk=user_id)
 
-    # Check if the logged-in user matches the user whose
-    # profile is being deleted
+    """
+    Check if the logged-in user matches the user whose
+    profile is being deleted
+    """
     if request.user == user:
         try:
             profile = UserProfile.objects.get(user=user)
@@ -303,7 +331,9 @@ def delete_profile(request, user_id):
         return redirect('home')
 
 
-# View to delete a comment
+"""
+View to delete a comment
+"""
 def delete_comment(request, comment_id):
     try:
         comment = Comment.objects.get(pk=comment_id)
@@ -324,7 +354,9 @@ def delete_comment(request, comment_id):
         return HttpResponseServerError("Comment not found")
 
 
-# View to handle comment approval by a superuser
+"""
+View to handle comment approval by a superuser
+"""
 @login_required
 @user_passes_test(lambda u: u.is_superuser, login_url='home')
 def comment_approval(request):
@@ -359,7 +391,9 @@ def comment_approval(request):
                   {'pending_comments': pending_comments})
 
 
-# View to toggle bookmark for a post
+"""
+View to toggle bookmark for a post
+"""
 @login_required
 def toggle_bookmark(request, post_id):
 
@@ -375,7 +409,9 @@ def toggle_bookmark(request, post_id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-# View to display user bookmarks
+"""
+View to display user bookmarks
+"""
 @login_required
 def user_bookmarks(request):
     user = request.user
